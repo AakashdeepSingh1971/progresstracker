@@ -1,4 +1,7 @@
 {
   "name": "@progresstracker/backend",
-  "packageManager": "yarn@3.0.1"
+  "packageManager": "yarn@3.0.1",
+  "devDependencies": {
+    "prisma": "^2.30.0"
+  }
 }

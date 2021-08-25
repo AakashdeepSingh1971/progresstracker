@@ -206,9 +206,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/engines@npm:2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb":
+  version: 2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb
+  resolution: "@prisma/engines@npm:2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb"
+  checksum: ccf91dd7e5b854231c3bb8e251bb45a71735cae0ad5b6a0813d2a6fb1ed923413867794d97965db5422647719c91be1159d2366e01960ec781b96df8ef37c655
+  languageName: node
+  linkType: hard
+
 "@progresstracker/backend@workspace:packages/backend":
   version: 0.0.0-use.local
   resolution: "@progresstracker/backend@workspace:packages/backend"
+  dependencies:
+    prisma: ^2.30.0
   languageName: unknown
   linkType: soft
 
@@ -2957,6 +2966,18 @@ __metadata:
   version: 1.0.3
   resolution: "pretty-hrtime@npm:1.0.3"
   checksum: bae0e6832fe13c3de43d1a3d43df52bf6090499d74dc65a17f5552cb1a94f1f8019a23284ddf988c3c408a09678d743901e1d8f5b7a71bec31eeeac445bef371
+  languageName: node
+  linkType: hard
+
+"prisma@npm:^2.30.0":
+  version: 2.30.0
+  resolution: "prisma@npm:2.30.0"
+  dependencies:
+    "@prisma/engines": 2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb
+  bin:
+    prisma: build/index.js
+    prisma2: build/index.js
+  checksum: b465d2bccd5ae04490e18f00a1a50219501aaf17ce4daf4d9aea269a8f65153b3adc175d40dbc52bba7293a9a2105488f1bc91855d944ae93abe6ee378113721
   languageName: node
   linkType: hard
 
