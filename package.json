@@ -1,6 +1,6 @@
 {
   "name": "progresstracker",
-  "packageManager": "yarn@3.0.1",
+  "packageManager": "yarn@2.4.2",
   "workspaces": [
     "packages/*"
   ]
