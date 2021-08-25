@@ -8,6 +8,15 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
-    "dotenv": "^10.0.0"
+    "@discordjs/collection": "^0.2.1",
+    "@duxcore/eventra": "^1.0.2",
+    "dotenv": "^10.0.0",
+    "firebase-admin": "^9.11.1",
+    "isomorphic-ws": "^4.0.1",
+    "ws": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/uuid": "^8.3.1"
   }
 }
