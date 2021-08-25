@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import '../styles/ProgressBar.css';
 
 import { AppProps } from "next/app";
 
