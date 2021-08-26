@@ -3,14 +3,3 @@ export interface MessagePayload {
     data: any;
     ref?: string
 }
-
-
-
-export interface UserToken {
-    id: number;
-    userId: string;
-    jti: string;
-    revoked: boolean;
-    revokedAt: Date;
-    issuedAt: Date;
-}

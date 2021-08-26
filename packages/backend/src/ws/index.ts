@@ -12,7 +12,6 @@ export class WebsocketServer {
     public operators: Collection<string, OperatorExecutor> = new Collection();
     public server: WebSocket.Server;
     public users: AuthManager = new AuthManager(this);
-    public WS_TIMEOUT: number = Number(process.env.WS_TIMEOUT || 10000);
 
     constructor(port: number) {
         this.server = new WebSocket.Server({ port });
