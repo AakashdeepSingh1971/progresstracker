@@ -1,6 +1,7 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "../components/ProgressBar";
+import Example from "./popup";
 
 export default function Home() {
   return (
@@ -12,9 +13,11 @@ export default function Home() {
       <header className="text-gray-600 body-font shadow-lg">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
+
             <span className="ml-3 text-xl">Tailblocks</span>
           </a>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
@@ -27,19 +30,25 @@ export default function Home() {
       <div className="flex h-screen mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
           <div className="m-4"> 
-          <div className=" space-x-2">1</div> 
-          <div>2</div> 
+          <div className=" ">ADD</div> 
+          <div><Example/> </div> 
           <div>3</div> 
           <div>4</div> 
           <div>5</div> 
+           
           </div>
         </div>
         <div className=" w-3/4  ">
-          <div className="m-5" > <h2>Employee status</h2> </div> 
+          
+          <button className="float-right hover:bg-blue-100 m-2 p-1 rounded-lg "><svg xmlns="http://www.w3.org/2000/svg " className="h-9 w-9 " viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+</svg> </button>
+         <div className="flex"> <h2>Employee status </h2> </div>
+        
           <table className="table-fixed mx-3 ">
             <thead>
               <tr>
-                <th className="w-1/8 text-xl ">Job No.</th>
+                <th className="w-1/9 text-xl ">Job No.</th>
                 <th className="w-1/4 text-xl">Name </th>
                 <th className="w-1/6 text-xl">Progress</th>
                 <th className="w-1/2 text-xl">Discreption</th>
@@ -91,3 +100,4 @@ export default function Home() {
     </div>
   );
 }
+
