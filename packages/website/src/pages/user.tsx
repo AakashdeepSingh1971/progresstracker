@@ -1,6 +1,7 @@
 import Head from "next/head";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "../components/ProgressBar";
-
+import { AiFillCheckCircle } from 'react-icons/ai';
 export default function Home() {
   return (
     <div>
@@ -18,31 +19,32 @@ export default function Home() {
           </a>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a className="mr-5 hover:text-gray-900">Home</a>
-
+            
           </nav>
-
+     
         </div>
       </header>
       <div className="flex h-screen mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
-          <div className="m-4">
-            <div className=" space-x-2">1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
+          <div className="m-4"> 
+          <div className="">1</div> 
+          <div>2</div> 
+          <div>3</div> 
+          <div>4</div> 
+          <div>5</div> 
           </div>
         </div>
         <div className=" w-3/4  ">
-          <div className="m-5" > <h2>Employee status</h2> </div>
+          <div className="m-5" > <h2>User status</h2> </div> 
           <table className="table-fixed mx-3 ">
             <thead>
               <tr>
-                <th className="w-1/8 text-xl ">Job No.</th>
+                <th className="w-1/9 text-xl ">Job's</th>
                 <th className="w-1/4 text-xl">Name </th>
                 <th className="w-1/6 text-xl">Progress</th>
                 <th className="w-1/2 text-xl">Discreption</th>
-
+                <th className="w-1/2 text-xl">Done</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -51,21 +53,21 @@ export default function Home() {
                 <td className="text-center">Intro to CSS</td>
                 <td><ProgressBar progress={30} /></td>
                 <td >bsdjawfsejfjsehaf eajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawk</td>
-
+                <td className="items-center"><AiFillCheckCircle/></td>
               </tr>
               <tr className="">
                 <td className="text-center">2.</td>
                 <td className="text-center">Intro to CSS</td>
                 <td><ProgressBar progress={50} /></td>
                 <td >disreajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawkip</td>
-
+                
               </tr>
               <tr>
                 <td className="text-center">3.</td>
                 <td className="text-center">Intro to CSS</td>
                 <td><ProgressBar progress={75} /></td>
                 <td >disreajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawkip</td>
-
+                
               </tr>
             </tbody>
           </table>
@@ -84,7 +86,7 @@ export default function Home() {
           <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2020 Tailblocks —
             <a href="https://twitter.com/" className="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@knyttneve</a>
           </p>
-
+         
         </div>
       </footer>
     </div>
