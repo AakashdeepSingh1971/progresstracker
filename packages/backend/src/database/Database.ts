@@ -83,4 +83,8 @@ export class Database {
         return true;
     }
 
+    getDatabase() {
+        return firebase.database();
+    }
+
 }
