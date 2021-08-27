@@ -6,11 +6,11 @@ import Example from "./popup";
 
 export default function Home() {
 
-  // const wrapper = useWrappedConn();
+//  const wrapper = useWrappedConn();
 
-  // wrapper.mutation.user.create('','').then((res)=>{
-  //   res.success
-  // })
+//   wrapper.mutation.user.create('','').then((res)=>{
+//     if(!res.success) res.error
+//   })
 
   // wrapper.query.user.auth('','')
 
