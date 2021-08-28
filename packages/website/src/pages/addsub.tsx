@@ -19,14 +19,7 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
   function openModal() {
     setIsOpen(true)
   }
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    let email = e.target.elements.email?.value;
-    let password = e.target.elements.password?.value;
-
-    console.log(email, password);
-};
+ 
 
   return (
     <>
@@ -84,28 +77,37 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
                 </Dialog.Title>
                 <div className="mt-2">
                 <div className=' flex bg-gray-bg1'>
-            <div className='w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
+            <div className='w-full  max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
                 <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
-                    {props.form} to your account 🔐
+                    {props.form} 
                 </h1>
 
-                <form onSubmit={handleFormSubmit}>
+                <form >
                     <div>
-                        <label htmlFor='email'>Email</label>
+                        <label htmlFor='user'>user</label>
                         <input
-                            type='email'
+                            type='user'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                            id='email'
-                            placeholder='Your Email'
+                            id='user'
+                            placeholder='user'
                         />
                     </div>
                     <div>
-                        <label htmlFor='password'>Password</label>
+                        <label htmlFor='work'>job</label>
                         <input
-                            type='password'
+                            type='work'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                            id='password'
-                            placeholder='Your Password'
+                            id='work'
+                            placeholder='job title'
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='Discription'>Discription</label>
+                        <input
+                            type='Discription'
+                            className={`w-full break-normal overflow-ellipsis p-2 text-primary border rounded-md outline-none text-sm transition duration-150  mb-4`}
+                            id='Discription'
+                            placeholder='Job discription'
                         />
                     </div>
 

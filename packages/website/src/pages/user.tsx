@@ -15,10 +15,11 @@ export default function Home() {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span className="ml-3 text-xl">Tailblocks</span>
+            <span className="ml-3 text-xl">Company name</span>
           </a>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a className="mr-5 hover:text-gray-900" href="/">Home</a>
+            <a className="mr-5 hover:text-gray-900" href="/admin">Admin</a>
             
           </nav>
      
@@ -41,7 +42,6 @@ export default function Home() {
               <tr>
                 <th className="w-1/9 text-xl ">Job's</th>
                 <th className="w-1/4 text-xl">Name </th>
-                {/* <th className="w-1/6 text-xl">Progress</th> */}
                 <th className="w-1/2 text-xl">Discreption</th>
                 <th className="w-1/2 text-xl">Done</th>
                 
@@ -51,44 +51,30 @@ export default function Home() {
               <tr>
                 <td className="text-center">1.</td>
                 <td className="text-center">Intro to CSS</td>
-                {/* <td><ProgressBar progress={30} /></td> */}
                 <td >bsdjawfsejfjsehaf eajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawk</td>
-                <td className="text-center  text-4xl "><button className=""><AiFillCheckCircle/></button></td>
+                <td className="text-center  text-3xl "><button className=""><AiFillCheckCircle/></button></td>
+                
               </tr>
               <tr className="">
                 <td className="text-center">2.</td>
                 <td className="text-center">Intro to CSS</td>
-                {/* <td><ProgressBar progress={50} /></td> */}
                 <td >disreajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawkip</td>
-                
+                <td className="text-center  text-3xl "><button className=""><AiFillCheckCircle/></button></td>
+
               </tr>
               <tr>
                 <td className="text-center">3.</td>
                 <td className="text-center">Intro to CSS</td>
                 {/* <td><ProgressBar progress={75} /></td> */}
                 <td >disreajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawkip</td>
-                
+                <td className="text-center  text-3xl "><button className=""><AiFillCheckCircle/></button></td>
+
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-
-      <footer className="text-gray-600 body-font">
-        <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-          <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <span className="ml-3 text-xl">Tailblocks</span>
-          </a>
-          <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2020 Tailblocks —
-            <a href="https://twitter.com/" className="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@knyttneve</a>
-          </p>
-         
-        </div>
-      </footer>
     </div>
   );
 }
