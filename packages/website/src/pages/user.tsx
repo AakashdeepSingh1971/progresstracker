@@ -53,7 +53,7 @@ export default function Home() {
                 <td className="text-center">Intro to CSS</td>
                 {/* <td><ProgressBar progress={30} /></td> */}
                 <td >bsdjawfsejfjsehaf eajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawk</td>
-                <td className="text-center  text-4xl"><button><AiFillCheckCircle/></button></td>
+                <td className="text-center  text-4xl "><button className=""><AiFillCheckCircle/></button></td>
               </tr>
               <tr className="">
                 <td className="text-center">2.</td>
