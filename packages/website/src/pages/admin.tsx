@@ -80,21 +80,21 @@ export default function Home() {
                 <td className="text-center">1.</td>
                 <td className="text-center">Intro to CSS</td>
                 <td><ProgressBar progress={30} /></td>
-                <td >bsdjawfsejfjsehaf eajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawk</td>
+                <td >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque delectus mollitia fugit ipsum voluptatibus! Molestiae quis vero quam ratione consequatur earum, cupiditate ut sunt dicta quaerat dolorem et, officiis exercitationem?</td>
 
               </tr>
               <tr className="">
                 <td className="text-center">2.</td>
                 <td className="text-center">Intro to CSS</td>
                 <td><ProgressBar progress={50} /></td>
-                <td >disreajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawkip</td>
+                <td >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas enim exercitationem voluptatibus corporis velit fuga ea aliquid. Odit, provident! Blanditiis vero distinctio repudiandae deleniti ab porro maiores voluptas reiciendis autem.</td>
 
               </tr>
               <tr>
                 <td className="text-center">3.</td>
                 <td className="text-center">Intro to CSS</td>
                 <td><ProgressBar progress={75} /></td>
-                <td >disreajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawkip</td>
+                <td >Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui recusandae blanditiis, veritatis dolores, vero sequi rem dolorum voluptatum perferendis quasi totam, sit quia impedit veniam aut quisquam repellendus culpa assumenda?</td>
 
               </tr>
             </tbody>
