@@ -19,14 +19,14 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
   function openModal() {
     setIsOpen(true)
   }
-  // const handleFormSubmit = (e) => {
-  //   e.preventDefault();
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
 
-  //   let email = e.target.elements.email?.value;
-  //   let password = e.target.elements.password?.value;
+    let email = e.target.elements.email?.value;
+    let password = e.target.elements.password?.value;
 
-  //   console.log(email, password);
-// };
+    console.log(email, password);
+};
 
   return (
     <>
@@ -89,8 +89,7 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
                     {props.form} to your account 🔐
                 </h1>
 
-                <form 
-                >
+                <form onSubmit={handleFormSubmit}>
                     <div>
                         <label htmlFor='email'>Email</label>
                         <input

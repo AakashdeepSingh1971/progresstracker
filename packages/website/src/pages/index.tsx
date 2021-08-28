@@ -6,13 +6,16 @@ import MyModal from "./login";
 
 export default function Home() {
 
-     const wrapper = useWrappedConn();
+    //  const wrapper = useWrappedConn();
 
-      wrapper.mutation.user.create('','').then((res)=>{
-        if(!res.success) res.error
-      })
+    //   wrapper.mutation.user.create(' ',' ').then((res)=>{
+    //     if(!res.success) res.error
+    //   })
 
-    wrapper.query.user.auth('','')
+    // wrapper.query.user.auth(' ',' ')
+    // wrapper.mutation.todo.create(' ',[])
+    // wrapper.mutation.todo.update(' ',' ',[])
+    // wrapper.mutation.todo.delete(' ',)
 
     return (
         <div>
