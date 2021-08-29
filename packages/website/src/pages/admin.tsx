@@ -5,15 +5,25 @@ import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
 import { FiDelete } from "react-icons/fi";
 import { FC } from "react";
+import { User } from "@progresstracker/wrapper";
+import { useEffect } from "react";
 
 
 export default function Home() {
   const wrapper = useWrappedConn();
   const [username, setUsername] = useState("")
   const [password, setPasword] = useState("")
-
   const [selectedUser, setSelectedUser] = useState("");
+  const [users, setUsers] = useState<User[]>();
 
+
+  useEffect(() => {
+    if (!wrapper.connection) return;
+    wrapper.query.admin.getUsers().then((resp) => {
+      if (!resp.success) console.error(resp.error);
+      if (resp.success) setUsers(resp.data);
+    })
+  }, [wrapper.connection])
 
 
 
@@ -56,24 +66,16 @@ export default function Home() {
       </header>
       <div className="flex h-full mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
-          <UserCard username="user1" setSelectedUser={setSelectedUser} />
-          <UserCard username="user2" setSelectedUser={setSelectedUser} />
-          <UserCard username="user3" setSelectedUser={setSelectedUser} />
-          <UserCard username="user4" setSelectedUser={setSelectedUser} />
+          {users && users.map((u) => <UserCard username={u.username} setSelectedUser={setSelectedUser} />)}
         </div>
         <div className=" w-3/4  ">
           <div className="flex m-3"> <h2>Employee status </h2> </div>
-
-          <Results username="user1" selectedtUsername={selectedUser} />
-          <Results username="user2" selectedtUsername={selectedUser} />
-          <Results username="user3" selectedtUsername={selectedUser} />
-          <Results username="user4" selectedtUsername={selectedUser} />
-
+          {users && users.map((u) => <Results username={u.username} selectedtUsername={selectedUser} />)}
         </div>
         <div className="m-4">
           <div className="float-right text-gray-600">
             <div className="">
-              <MyModal pass="ADD" button="ADD" form="Add job"  />
+              <MyModal pass="ADD" button="ADD" form="Add job" />
             </div>
 
           </div>
@@ -103,8 +105,8 @@ function Row(props: {
       <td className="w-1/12 text-3xl text-center ">{props.delete} <button
       // onClick={prgress bar inc }
       > <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-    </svg></button></td>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg></button></td>
       {isOpen ?
         <tr className={props.className}>
           <td>aaaa</td>
