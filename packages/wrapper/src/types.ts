@@ -4,6 +4,15 @@ export interface GenericSuccessResponse {
     success: true
 }
 
+export interface UserAuthResponse {
+    success: true,
+    user: {
+        username: string,
+        id: string,
+        role: UserRole
+    }
+}
+
 export interface ErrorResponse {
     success: false,
     error: string,
@@ -21,7 +30,7 @@ export interface Todo {
     tasks: TodoTask[]
 }
 
-export enum RoomUserRole {
+export enum UserRole {
     ADMINISTRATOR = 'ADMINISTRATOR',
     USER = 'USER'
 }
