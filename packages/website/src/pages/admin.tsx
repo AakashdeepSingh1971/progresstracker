@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import ProgressBar from "../components/ProgressBar";
+import AdminProgressBar from "../components/AdminProgressBar";
 import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
 
@@ -9,6 +9,9 @@ export default function Home() {
   const wrapper = useWrappedConn();
   const [username, setUsername] = useState("")
   const [password, setPasword] = useState("")
+  const [showResults, setShowResults] = React.useState(false)
+  const onClick = () => setShowResults(true)
+
 
   const submit = (e: any) => {
     e.preventDefault();
@@ -17,7 +20,7 @@ export default function Home() {
     wrapper.query.user.auth(username, password).then((resp) => {
       console.log(resp)
       if (!resp.success) console.log(resp.error);
-      // console.log(button)
+      
     })
   }
   //  const wrapper = useWrappedConn();
@@ -53,9 +56,9 @@ export default function Home() {
           <div className="m-4">
             <div className=" "></div>
             <div>
-              <div className=" float-right bg-indigo-400 rounded-lg "><MyModal pass="Delete" button="Delete" form="Delete job" title=" " /> </div>
-              <div className=" float-left bg-indigo-600 rounded-lg "><MyModal pass="ADD" button="ADD" form="Add job" title="" /> </div>
-            </div>
+          <div className="float-right text-gray-800"><MyModal pass="Delete" button="Delete" form="Delete job" title=" " /> </div>
+              <div className="float-left text-white bg-indigo-600 rounded-lg"><MyModal pass="ADD" button="ADD" form="Add job" title="" /> </div>
+            </div> 
             <div></div>
             <div></div>
             <div></div>
@@ -66,57 +69,72 @@ export default function Home() {
           <input
             // value={username} 
             // onChange={(e)=>{setUsername(e.target.value)}}
+            
             type='username'
             className={` m-4 p-2 text-primary border border-indigo-500 rounded-md focus:ring-2 focus:ring-blue-500 outline-none text-sm transition duration-150 ease-in-out mb-4 `}
             id='username'
-            placeholder='Search username' /><button type="button"
-              onClick={submit}
-              className="px-4 py-2 text-sm font-medium text-gray-600 bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 bg-indigo-400">Submit</button>
-          <div className=" m-5 flex flex-col">
-            <div>aakash</div>
-            <div>
-
-
-            </div>
-            {/* <HeadT />
-          <Table prog={30} number={1} job="daddy"  discription="aakash11 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table prog={90} number={2} job="daddy"  discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka 
-          kakakaaakash akkakakak " /> */}
-          </div>
-          </div>
+            placeholder='Search username' />
+           
+            
+          
+          <button type="submit" value="submit" onClick={onClick}
+                           className="px-4 py-2 text-sm font-medium text-gray-600  rounded-lg bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 bg-indigo-400">Submit</button>{showResults ? <Results /> : null}
+         
         </div>
       </div>
-      )
+    </div>
+  )
 }
-      {/* 
-// function HeadT() {
-//   return (
-//     <table className="table-fixed mx-3 ">
-//       <thead>
-//         <tr>
-//           <th className="w-1/4 text-xl text-center ">Job no</th>
-//           <th className="w-1/4  text-xl text-center ">Job </th>
-//           <th className="w-1/4 text-xl text-center ">Progress</th>
-//           <th className="w-1/4 text-xl text-center ">Discreption</th>
-//         </tr>
-//       </thead></table>
-//   )
+const Results = () => (
+  <div id="results" className="search-results  m-3">
+    <div id="myDIV">
+          <div className="  flex flex-col">
+            
+              <div className="m-5 text-2xl font-bold "> Aakash
+              </div>
+              <HeadT />
+              <Table prog={30} number={1} job="daddy" discription="aakash11 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+              <Table prog={90} number={2} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka 
+          kakakaaakash akkakakak " /></div>
+          </div>
+  </div>
+)
+// function myFunction() {
+//   const x = document.getElementById("myDIV");
+//   if (VRDisplay === "none") {
+//     VRDisplay = "block";
+//   } else {
+//     x.style.display = "none";
+//   }
 // }
-// function Table(props: {
-//   prog: number, number: number,  job: string, discription: string
-// }) {
+function HeadT() {
+  return (
+    <table className="table-fixed mx-3 ">
+      <thead>
+        <tr>
+          <th className="w-1/12 text-xl text-center ">Job no</th>
+          <th className="w-1/6 text-xl text-center ">Job </th>
+          <th className="w-1/4 text-xl text-center pr-12">Progress</th>
+          <th className="w-1/4 text-xl text-center ">Discreption</th>
+        </tr>
+      </thead></table>
+  )
+}
+function Table(props: {
+  prog: number, number: number, job: string, discription: string
+}) {
 
-//   return (
+  return (
 
-//     <table className="table-fixed mx-3 ">
-//       <tbody>
-//         <tr>
-//           <td className="w-1/8  text-xl text-center">{props.number}</td>
-//           <td className="w-1/4  text-xl text-center">{props.job}</td>
-//           <td className="w-1/4  text-xl text-center" >{<ProgressBar progress={props.prog} />}</td>
-//           <td className="w-1/4  text-xl " >{props.discription}</td>
-//         </tr>
-//       </tbody>
-//     </table>
-//   )
-// } */}
+    <table className="table-fixed mx-3 ">
+      <tbody>
+        <tr>
+          <td className="w-1/12  text-xl text-center">{props.number}</td>
+          <td className="w-1/6  text-xl text-center">{props.job}</td>
+          <td className="w-1/4  text-xl text-center" >{<AdminProgressBar progress={props.prog} />}</td>
+          <td className="w-1/4  text-xl " >{props.discription}</td>
+        </tr>
+      </tbody>
+    </table>
+  )
+}

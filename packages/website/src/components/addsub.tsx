@@ -6,10 +6,10 @@ import {
   InputHTMLAttributes,
 } from "react"
 export type MyModalProps = DetailedHTMLProps<
-    InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
+  InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
 >;
-export default function MyModal(props: {pass: string ,button: string,form: string ,title: string}) {
+export default function MyModal(props: { pass: string, button: string, form: string, title: string }) {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -19,7 +19,7 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
   function openModal() {
     setIsOpen(true)
   }
- 
+
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
         <button
           type="button"
           onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className="float-right px-4 py-2 text-sm font-medium rounded-lg bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 bg-indigo-400"
         >
           {props.pass}
         </button>
@@ -76,58 +76,56 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
                   {props.title}
                 </Dialog.Title>
                 <div className="mt-2">
-                <div className=' flex bg-gray-bg1'>
-            <div className='w-full  max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
-                <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
-                    {props.form} 
-                </h1>
+                  <div className=' flex bg-gray-bg1'>
+                    <div className='w-full  max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
+                      <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
+                        {props.form}
+                      </h1>
 
-                <form >
-                    <div>
-                        <label htmlFor='user'>user</label>
-                        <input
+                      <form >
+                        <div>
+                          <label htmlFor='user'>user</label>
+                          <input
                             type='user'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='user'
                             placeholder='user'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='work'>job</label>
-                        <input
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor='work'>job</label>
+                          <input
                             type='work'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='work'
                             placeholder='job title'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='Discription'>Discription</label>
-                        <input
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor='Discription'>Discription</label>
+                          <input
                             type='Discription'
                             className={`w-full break-normal overflow-ellipsis p-2 text-primary border rounded-md outline-none text-sm transition duration-150  mb-4`}
                             id='Discription'
                             placeholder='Job discription'
-                        />
-                    </div>
+                          />
+                        </div>
 
-                    <div className='flex justify-center items-center mt-6'>
-                    <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
-                  >
-                    {props.button}
-                  </button>
+                        <div className='flex justify-center items-center mt-6'>
+                          <button
+                            type="button"
+                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                            onClick={closeModal}
+                          >
+                            {props.button}
+                          </button>
+                        </div>
+                      </form>
                     </div>
-                </form>
-            </div>
-        </div>
+                  </div>
                 </div>
 
-                <div className="">
-                  
-                </div>
+
               </div>
             </Transition.Child>
           </div>

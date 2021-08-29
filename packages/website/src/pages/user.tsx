@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, {
   // useEffect, useState
 } from "react";
-import ProgressBar from "../components/ProgressBar";
+import UserProgressBar from "../components/UserProgressBar";
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { useState } from "react";
 export default function Home() {
@@ -27,34 +27,34 @@ export default function Home() {
           </nav>
         </div>
       </header>
-      <div className="flex h-screen mt-10">
-        <div className="w-1/4 sticky-right-0 shadow-lg" >
-          <div className="m-4">
-            <div className=""></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+    
+        
+        
+      
+        <div className="w-full">
+          <div className="flex m-3"> <h2> </h2> </div><h2 className="m-3">Progress</h2>
+          <div className="m-3 w-11/12  ">
+            <UserProgressBar  progress={50} />
+            
           </div>
-        </div>
-        <div className=" w-3/4  ">
-          <div className="flex m-3"> <h2> </h2> </div>
-          <div className="m-3"><h2>Progress</h2>
-            <ProgressBar progress={50} />
-            <h2>Tasks</h2>
-          </div>
+          <h2 className="m-3">Tasks</h2>
           {/* <HeadT /> */}
           <Table
-            number={1} checkbox={true} discription="aakash1 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2}  checkbox={true} discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+            number={1} checkbox={true} job="jas" discription="aakash1 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2}  checkbox={true}  job="jass2" discription="aakash  akkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
         </div>
       </div>
-    </div>
+    
   );
 }
 
 function Table(props: {
-  // job: string,
+  job: string,
   number: number,
   checkbox: boolean,
   discription: string,
@@ -63,10 +63,10 @@ function Table(props: {
     <table className="table-fixed mx-3 ">
       <tbody>
         <tr>
-          <td className="w-1/12 px-5 text-xl text-center">{props.number}</td>
-          {/* <td className="w-1/6 text-xl text-center">{props.job}</td> */}
-          <td className="w-1/2 text-xl " >{props.discription}</td>
-          <td className="w-1/12 text-3xl text-center">{props.checkbox} <button
+          <td className="w-1/12 px-5 text-xl text-center border-b-2 ">{props.number}</td>
+          <td className="w-1/6 text-xl border-b-2 ">{props.job}</td>
+          <td className="w-1/4 text-xl border-b-2 " >{props.discription}</td>
+          <td className="w-1/12 text-3xl text-center border-b-2 ">{props.checkbox} <button 
           // onClick={prgress bar inc }
           ><AiFillCheckCircle /></button></td>
         </tr>
