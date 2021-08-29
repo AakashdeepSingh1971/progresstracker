@@ -55,7 +55,7 @@ export default function Home() {
           </nav>
         </div>
       </header>
-      <div className="flex h-screen mt-10">
+      <div className="flex h-full mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
           <UserCard username="r1" setSelectedUser={setSelectedUser} />
           <UserCard username="r2" setSelectedUser={setSelectedUser} />
@@ -110,7 +110,7 @@ function UserCard(
   props: { username: string, setSelectedUser: React.Dispatch<React.SetStateAction<string>> }) {
   const onClick = () => props.setSelectedUser(props.username);
   return (
-    <div className="m-5 text-lg flex  ">
+    <div className="m-5 text-lg  ">
       <button type="submit" value="submit" onClick={onClick} className=" text-left w-full border-b-2 bg-blue-100 rounded-lg p-2 hover:bg-blue-200 ">
         {props.username}
       </button>
@@ -141,17 +141,17 @@ const Results: FC<ResultsProps> = ({
             </tr>
           </thead>
           <tbody className="table-fixed mx-3">
-            <Row prog={30} number={1} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={2} delete={true} job="dbbcbaddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={3} delete={true} job="dadccccccccccccdy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={4} delete={true} job="dadcccbc bcb  dy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={5} delete={true} job="ddfgdvdvvdv" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={6} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka  kakakaaakash akkakakak " />
-            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
-            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={3} delete={true} job="job3" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={4} delete={true} job="job4" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={5} delete={true} job="job5" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={6} delete={true} job="job6" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={2} delete={true} job="job7" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={2} delete={true} job="job8" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={2} delete={true} job="job9" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={2} delete={true} job="job10" discription="word word word word word word word word word word word word wordwordword " />
+            <Row prog={90} number={2} delete={true} job="job11" discription="word word word word word word word word word word word word wordwordword   " />
           </tbody>
         </table>
       </div>
