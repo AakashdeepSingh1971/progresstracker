@@ -6,10 +6,10 @@ import {
   InputHTMLAttributes,
 } from "react"
 export type MyModalProps = DetailedHTMLProps<
-    InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
+  InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
 >;
-export default function MyModal(props: {pass: string ,button: string,form: string ,title: string}) {
+export default function MyModal(props: { pass: string, button: string, form: string, title: string }) {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -26,7 +26,7 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
     let password = e.target.elements.password?.value;
 
     console.log(email, password);
-};
+  };
 
   return (
     <>
@@ -78,53 +78,43 @@ export default function MyModal(props: {pass: string ,button: string,form: strin
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
+                  className="text-lg font-medium leading-6 text-gray-900">
                   {props.title}
                 </Dialog.Title>
                 <div className="mt-2">
-                <div className=' flex bg-gray-bg1'>
-            <div className='w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
-                <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
-                    {props.form} to your account 🔐
-                </h1>
-
-                <form onSubmit={handleFormSubmit}>
-                    <div>
-                        <label htmlFor='email'>Email</label>
-                        <input
+                  <div className=' flex bg-gray-bg1'>
+                    <div className='w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
+                      <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
+                        {props.form} to your account 🔐
+                      </h1>
+                      <form onSubmit={handleFormSubmit}>
+                        <div>
+                          <label htmlFor='email'>Email</label>
+                          <input
                             type='email'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='email'
-                            placeholder='Your Email'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='password'>Password</label>
-                        <input
+                            placeholder='Your Email'/>
+                        </div>
+                        <div>
+                          <label htmlFor='password'>Password</label>
+                          <input
                             type='password'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='password'
-                            placeholder='Your Password'
-                        />
+                            placeholder='Your Password'/>
+                        </div>
+                        <div className='flex justify-center items-center mt-6'>
+                          <button
+                            type="button"
+                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                            onClick={closeModal}>
+                            {props.button}
+                          </button>
+                        </div>
+                      </form>
                     </div>
-
-                    <div className='flex justify-center items-center mt-6'>
-                    <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
-                  >
-                    {props.button}
-                  </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-                </div>
-
-                <div className="">
-                  
+                  </div>
                 </div>
               </div>
             </Transition.Child>

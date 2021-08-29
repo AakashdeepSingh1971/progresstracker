@@ -3,7 +3,7 @@ import React from "react";
 import ProgressBar from "../components/ProgressBar";
 import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "./addsub";
-
+import  Table from "./table"
 export default function Home() {
 
 //  const wrapper = useWrappedConn();
@@ -65,9 +65,13 @@ export default function Home() {
           
       
           <div className="flex m-3"> <h2>Employee status </h2> </div>
-
-          <table className="table-fixed mx-3 ">
-            <thead>
+          <Table title="job no."   progress={ 30 } number={1} name="aakash" job="daddy" />
+          <Table title="job no." progress={ 90 } number={2}  name="aakash" job="daddy"/>
+          {/* <Table title2="job no." className2="string " progress2={ 30 } number2={2}  />
+          <Table title3="job no." className3="string " progress3={ 30 } number3={3}  />
+          <Table title4="job no." className4="string " progress4={ 30 } number4={4}  />
+          <Table title5="job no." className5="string " progress5={ 30 } number5={5}  /> */}
+            {/* <thead>
               <tr>
                 <th className="w-1/9 text-xl ">Job No.</th>
                 <th className="w-1/7 text-xl">Job </th>
@@ -103,7 +107,7 @@ export default function Home() {
 
               </tr>
             </tbody>
-          </table>
+            </table> */}
         </div>
       </div>
 
