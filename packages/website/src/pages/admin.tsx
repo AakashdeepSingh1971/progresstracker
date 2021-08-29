@@ -4,7 +4,7 @@ import AdminProgressBar from "../components/AdminProgressBar";
 import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
 import { FC } from "react";
-import { User } from "@progresstracker/wrapper";
+import { Todo, User } from "@progresstracker/wrapper";
 import { useEffect } from "react";
 
 
@@ -65,11 +65,11 @@ export default function Home() {
       </header>
       <div className="flex h-full mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
-          {users && users.map((u) => <UserCard username={u.username} setSelectedUser={setSelectedUser} />)}
+          {users && users.map((u) => <UserCard key={u.username} username={u.username} setSelectedUser={setSelectedUser} />)}
         </div>
         <div className=" w-3/4  ">
           <div className="flex m-3"> <h2>Employee status </h2> </div>
-          {users && users.map((u) => <Results username={u.username} selectedtUsername={selectedUser} />)}
+          {users && users.map((u) => <Results key={u.username} username={u.username} selectedtUsername={selectedUser} />)}
         </div>
         <div className="m-4">
           <div className="float-right text-gray-600">
@@ -141,6 +141,14 @@ const Results: FC<ResultsProps> = ({
   selectedtUsername,
   username,
 }) => {
+  const [todos, setTodos] = useState<Todo[]>()
+  const wrapper = useWrappedConn();
+  useEffect(() => {
+    wrapper.query.user.getTodos(username).then((resp) => {
+      if (!resp.success) console.error(resp.error);
+      if (resp.success) setTodos(resp.data);
+    })
+  }, [username])
   return (
 
     <div id="results" className={`m-3 ${selectedtUsername !== username ? 'hidden' : ''}`}>
@@ -158,17 +166,7 @@ const Results: FC<ResultsProps> = ({
               </tr>
             </thead>
             <tbody className="table-fixed mx-3" >
-              <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={3} delete={true} job="job3" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={4} delete={true} job="job4" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={5} delete={true} job="job5" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={6} delete={true} job="job6" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={2} delete={true} job="job7" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={2} delete={true} job="job8" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={2} delete={true} job="job9" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={2} delete={true} job="job10" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={2} delete={true} job="job11" discription="word word word word word word word word word word word word wordwordword   " />
+              {todos && todos.map((t) => <Row prog={30} number={1} delete={true} job={t.name} key={t.id} discription="" />)}
             </tbody>
           </table>
         </div>
