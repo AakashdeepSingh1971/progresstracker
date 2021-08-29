@@ -1,9 +1,9 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, {
+  // useEffect, useState
+} from "react";
 import ProgressBar from "../components/ProgressBar";
 import { AiFillCheckCircle } from 'react-icons/ai';
-import HeadT from "../components/headT";
-import Table from "../components/table";
 export default function Home() {
   return (
     <div>
@@ -27,22 +27,48 @@ export default function Home() {
       </header>
       <div className="flex h-screen mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
-          <div className="m-4"> 
-          <div className=""></div> 
-          <div></div> 
-          <div></div> 
-          <div></div> 
-          <div></div> 
+          <div className="m-4">
+            <div className=""></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
         </div>
         <div className=" w-3/4  ">
-          <div className="flex m-3"> <h2>Employee status </h2> </div>
-         <ProgressBar progress={50}/>
-          <HeadT />
-          <Table prog={40} number={1} job="daddy1" name="aakas1" discription="aakash1 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table prog={90} number={2} job="daddy" name="aakash" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <div className="flex m-3"> <h2> </h2> </div>
+          <div className="m-3"><h2>Progress</h2>
+            <ProgressBar progress={50} />
+            <h2>Tasks</h2>
+          </div>
+          {/* <HeadT /> */}
+          <Table
+            number={1} checkbox={true} discription="aakash1 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2}  checkbox={true} discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
         </div>
       </div>
     </div>
   );
+}
+
+function Table(props: {
+  // job: string,
+  number: number,
+  checkbox: boolean,
+  discription: string,
+}) {
+  return (
+    <table className="table-fixed mx-3 ">
+      <tbody>
+        <tr>
+          <td className="w-1/12 px-5 text-xl text-center">{props.number}</td>
+          {/* <td className="w-1/6 text-xl text-center">{props.job}</td> */}
+          <td className="w-1/2 text-xl " >{props.discription}</td>
+          <td className="w-1/12 text-3xl text-center">{props.checkbox} <button
+          // onClick={prgress bar inc }
+          ><AiFillCheckCircle /></button></td>
+        </tr>
+      </tbody>
+    </table>
+  )
 }

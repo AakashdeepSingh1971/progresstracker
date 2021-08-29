@@ -1,10 +1,8 @@
 import Head from "next/head";
 import React from "react";
 import ProgressBar from "../components/ProgressBar";
-import { useWrappedConn } from "../hooks/useConn";
+// import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
-import Table from "../components/table"
-import HeadT from "../components/headT"
 
 
 export default function Home() {
@@ -53,11 +51,45 @@ export default function Home() {
         <div className=" w-3/4  ">
           <div className="flex m-3"> <h2>Employee status </h2> </div>
           <HeadT />
-          <Table prog={30} number={1} job="daddy1" name="aakas1h" discription="aakash11 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table prog={90} number={2} job="daddy" name="aakash" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table prog={30} number={1} job="daddy" name="aakash" discription="aakash11 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table prog={90} number={2} job="daddy" name="aakash" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka 
+          kakakaaakash akkakakak " />
         </div>
       </div>
     </div>
   );
 }
 
+function HeadT() {
+  return (
+    <table className="table-fixed mx-3 ">
+      <thead>
+        <tr>
+          <th className="w-1/9 text-xl text-center ">Job no</th>
+          <th className="w-1/7 px-10 text-xl text-center ">Job </th>
+          <th className="w-1/6 px-10 text-xl text-center ">Name </th>
+          <th className="w-1/6 text-xl text-center ">Progress</th>
+          <th className="w-1/2 text-xl text-center ">Discreption</th>
+        </tr>
+      </thead></table>
+  )
+}
+function Table(props: {
+  prog: number, number: number, name: string, job: string, discription: string
+}) {
+
+  return (
+
+    <table className="table-fixed mx-3 ">
+      <tbody>
+        <tr>
+          <td className="w-1/9 px-5 text-xl text-center">{props.number}</td>
+          <td className="w-1/7  text-xl text-center">{props.job}</td>
+          <td className="w-1/6 text-xl text-center">{props.name}</td>
+          <td className="w-1/6 text-xl text-center" >{<ProgressBar progress={props.prog} />}</td>
+          <td className="w-1/2 text-xl " >{props.discription}</td>
+        </tr>
+      </tbody>
+    </table>
+  )
+}

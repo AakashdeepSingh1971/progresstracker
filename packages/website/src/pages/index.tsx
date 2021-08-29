@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
-import ProgressBar from "../components/ProgressBar";
-import { useWrappedConn } from "../hooks/useConn";
+// import ProgressBar from "../components/ProgressBar";
+// import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "./login";
 
 export default function Home() {
