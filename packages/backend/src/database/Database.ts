@@ -36,9 +36,14 @@ export class Database {
         return true;
     }
 
-    async createTodo(username: string, todoName: string, tasks: string[]) {
+    async createTodo(adminUsername: string, username: string, todoName: string, tasks: string[]) {
         if (!username) return false;
+        if (!adminUsername) return false;
         if (tasks.length == 0) return false;
+
+        const admin = await this.getUser(adminUsername);
+        if (!admin) return false;
+        if (admin.role !== UserRole.ADMINISTRATOR) return false;
 
         const id = uuidv4();
         const ref = firebase.database().ref(`todos/${username}/${id}`);
@@ -55,11 +60,16 @@ export class Database {
         return true;
     }
 
-    async updateTodo(username: string, todoId: string, todoName: string, tasks: string[]) {
+    async updateTodo(adminUsername: string, username: string, todoId: string, todoName: string, tasks: string[]) {
         if (!username) return false;
+        if (!adminUsername) return false;
         if (!todoId) return false;
         if (!todoName) return false;
         if (tasks.length == 0) return false;
+
+        const admin = await this.getUser(adminUsername);
+        if (!admin) return false;
+        if (admin.role !== UserRole.ADMINISTRATOR) return false;
 
         const ref = firebase.database().ref(`todos/${username}/${todoId}`);
 
@@ -71,9 +81,14 @@ export class Database {
         return true;
     }
 
-    async deleteTodo(username: string, todoId: string) {
+    async deleteTodo(adminUsername: string, username: string, todoId: string) {
         if (!username) return false;
+        if (!adminUsername) return false;
         if (!todoId) return false;
+
+        const admin = await this.getUser(adminUsername);
+        if (!admin) return false;
+        if (admin.role !== UserRole.ADMINISTRATOR) return false;
 
         const ref = firebase.database().ref(`todos/${username}/${todoId}`);
 

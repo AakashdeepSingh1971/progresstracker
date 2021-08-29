@@ -9,21 +9,27 @@ const operator = new OperatorExecutor({
 operator.use(CheckAuth())
 
 operator.setExecutor(async (server, client, payload) => {
-    if (!payload.data.id) return operator.reply(client, payload, {
+    if (!payload.data.id || !payload.data.username) return operator.reply(client, payload, {
         success: false,
         code: 4001,
         error: 'Please provide all fields'
     })
 
 
-    const user = server.users.getUserByWsId(client.id);
-    if (!user) return operator.reply(client, payload, {
+    const admin = server.users.getUserByWsId(client.id);
+    if (!admin) return operator.reply(client, payload, {
         success: false,
         code: 4001,
-        error: 'Unauthorised'
+        error: 'Unauthorized'
     })
 
-    const success = await database.deleteTodo(user.username, payload.data.id)
+    if (admin.role !== UserRole.ADMINISTRATOR) return operator.reply(client, payload, {
+        success: false,
+        code: 4001,
+        error: 'Unauthorized'
+    })
+
+    const success = await database.deleteTodo(admin.username, payload.data.username, payload.data.id)
 
     return operator.reply(client, payload, {
         success

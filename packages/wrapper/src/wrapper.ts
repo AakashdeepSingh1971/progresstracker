@@ -47,18 +47,18 @@ export const wrap = (connection: Connection) => ({
             }),
         },
         todo: {
-            create: (name: string, tasks: TodoTask[]): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
-                connection.fetch('todo:create', { name, tasks }).then((f) => {
+            create: (username: string, name: string, tasks: TodoTask[]): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
+                connection.fetch('todo:create', { username, name, tasks }).then((f) => {
                     resolve((f as GenericSuccessResponse | ErrorResponse))
                 })
             }),
-            update: (id: string, name: string, tasks: TodoTask[]): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
-                connection.fetch('todo:update', { id, name, tasks }).then((f) => {
+            update: (username: string, id: string, name: string, tasks: TodoTask[]): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
+                connection.fetch('todo:update', { username, id, name, tasks }).then((f) => {
                     resolve((f as GenericSuccessResponse | ErrorResponse))
                 })
             }),
-            delete: (id: string): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
-                connection.fetch('todo:delete', { id }).then((f) => {
+            delete: (username: string, id: string): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
+                connection.fetch('todo:delete', { username, id }).then((f) => {
                     resolve((f as GenericSuccessResponse | ErrorResponse))
                 })
             }),

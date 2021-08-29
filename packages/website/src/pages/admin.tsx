@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import AdminProgressBar from "../components/AdminProgressBar";
 import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
-import { FiDelete } from "react-icons/fi";
 import { FC } from "react";
 import { User } from "@progresstracker/wrapper";
 import { useEffect } from "react";
@@ -170,11 +169,6 @@ const Results: FC<ResultsProps> = ({
               <Row prog={90} number={2} delete={true} job="job9" discription="word word word word word word word word word word word word wordwordword " />
               <Row prog={90} number={2} delete={true} job="job10" discription="word word word word word word word word word word word word wordwordword " />
               <Row prog={90} number={2} delete={true} job="job11" discription="word word word word word word word word word word word word wordwordword   " />
-
-
-
-
-
             </tbody>
           </table>
         </div>
