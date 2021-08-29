@@ -13,6 +13,11 @@ export interface UserAuthResponse {
     }
 }
 
+export interface GetUserTodosResponse {
+    success: true,
+    data: Todo[]
+}
+
 export interface ErrorResponse {
     success: false,
     error: string,

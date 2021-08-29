@@ -84,6 +84,21 @@ export class Database {
         return true;
     }
 
+    async getUserTodos(adminUsername: string, username: string) {
+        if (!adminUsername) return false;
+        if (!username) return false;
+
+        const admin = await this.getUser(adminUsername);
+        if (!admin) return false;
+        if (admin.role !== UserRole.ADMINISTRATOR) return false;
+
+        const ref = firebase.database().ref(`todos/${username}`);
+        const snap = await ref.once('value');
+        if (!snap.exists()) return false;
+
+        return snap.toJSON();
+    }
+
     getDatabase() {
         return firebase.database();
     }
