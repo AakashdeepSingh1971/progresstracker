@@ -10,7 +10,7 @@ export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-export default function MyModal(props: { pass: string, button: string, form: string, title: string }) {
+export default function signup() {
   const [isOpen, setIsOpen] = useState(false)
   const [username,setUsername] = useState("")
   const [password,setPasword] = useState("")

@@ -5,6 +5,8 @@ import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
 import { FiDelete } from "react-icons/fi";
 import { FC } from "react";
+import { Disclosure } from '@headlessui/react'
+import { ChevronUpIcon } from '@heroicons/react/solid'
 
 
 export default function Home() {
@@ -13,10 +15,6 @@ export default function Home() {
   const [password, setPasword] = useState("")
 
   const [selectedUser, setSelectedUser] = useState("");
-
-
-
-
   const submit = (e: any) => {
     e.preventDefault();
 
@@ -132,7 +130,8 @@ const Results: FC<ResultsProps> = ({
       <div className="  flex flex-col">
         <div className="m-5 text-2xl font-bold ">{username}</div>
         <table>
-          <thead className="table-fixed mx-3 ">
+        
+          <thead className=" mx-3 ">
             <tr>
               <th className="w-1/12 text-xl text-center ">Job no</th>
               <th className="w-1/6 text-xl text-center ">Job </th>
@@ -140,8 +139,35 @@ const Results: FC<ResultsProps> = ({
               <th className="w-1/4 text-xl text-center ">Discreption</th>
             </tr>
           </thead>
-          <tbody className="table-fixed mx-3">
-            <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word wordwordword " />
+          <tbody className=" mx-3">
+          <Disclosure>
+          {({ open }) => (
+            <>
+            <Disclosure>
+      <Disclosure.Button className="py-2">
+        Is team pricing available?
+      </Disclosure.Button>
+      <Disclosure.Panel className="text-gray-500">
+        Yes! You can purchase a license that you can share with your entire
+        team.
+      </Disclosure.Panel>
+    </Disclosure>
+              <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <span>Job Title</span>
+                <ChevronUpIcon
+                  className={`${
+                    open ? 'transform rotate-180' : ''
+                  } w-5 h-5 text-purple-500`}
+                />
+              </Disclosure.Button>
+              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+              <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word wordwordword " />
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
+            {/* <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word wordwordword " />
             <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word wordwordword " />
             <Row prog={90} number={3} delete={true} job="job3" discription="word word word word word word word word word word word word wordwordword " />
             <Row prog={90} number={4} delete={true} job="job4" discription="word word word word word word word word word word word word wordwordword " />
@@ -151,7 +177,7 @@ const Results: FC<ResultsProps> = ({
             <Row prog={90} number={2} delete={true} job="job8" discription="word word word word word word word word word word word word wordwordword " />
             <Row prog={90} number={2} delete={true} job="job9" discription="word word word word word word word word word word word word wordwordword " />
             <Row prog={90} number={2} delete={true} job="job10" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={2} delete={true} job="job11" discription="word word word word word word word word word word word word wordwordword   " />
+            <Row prog={90} number={2} delete={true} job="job11" discription="word word word word word word word word word word word word wordwordword   " /> */}
           </tbody>
         </table>
       </div>

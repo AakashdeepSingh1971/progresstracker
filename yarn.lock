@@ -309,6 +309,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@heroicons/react@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@heroicons/react@npm:1.0.4"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 08f2853a49e51f274f22e8e1bb4e7d8a49456b7eb770447da66fd06ac05bf821ddf5d93170088d61ec44ae66cfbdc877c287861d5a3d22aad1785659502e3a71
+  languageName: node
+  linkType: hard
+
 "@material-ui/icons@npm:^4.11.2":
   version: 4.11.2
   resolution: "@material-ui/icons@npm:4.11.2"
@@ -4064,6 +4073,7 @@ __metadata:
   resolution: "progresstracker@workspace:."
   dependencies:
     "@headlessui/react": ^1.4.0
+    "@heroicons/react": ^1.0.4
     "@material-ui/icons": ^4.11.2
     react-icons: ^4.2.0
   languageName: unknown

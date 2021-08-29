@@ -6,6 +6,7 @@
   ],
   "dependencies": {
     "@headlessui/react": "^1.4.0",
+    "@heroicons/react": "^1.0.4",
     "@material-ui/icons": "^4.11.2",
     "react-icons": "^4.2.0"
   }
