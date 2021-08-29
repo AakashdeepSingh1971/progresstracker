@@ -99,6 +99,20 @@ export class Database {
         return snap.toJSON();
     }
 
+    async getUsers(adminUsername: string) {
+        if (!adminUsername) return false;
+
+        const admin = await this.getUser(adminUsername);
+        if (!admin) return false;
+        if (admin.role !== UserRole.ADMINISTRATOR) return false;
+
+        const ref = firebase.database().ref(`users`);
+        const snap = await ref.once('value');
+        if (!snap.exists()) return false;
+
+        return snap.toJSON();
+    }
+
     getDatabase() {
         return firebase.database();
     }

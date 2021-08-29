@@ -18,6 +18,11 @@ export interface GetUserTodosResponse {
     data: Todo[]
 }
 
+export interface GetUsersResponse {
+    success: true,
+    data: User[]
+}
+
 export interface ErrorResponse {
     success: false,
     error: string,
@@ -33,6 +38,12 @@ export interface Todo {
     name: string,
     id: string,
     tasks: TodoTask[]
+}
+
+export interface User {
+    password: string;
+    role: UserRole;
+    username: string;
 }
 
 export enum UserRole {

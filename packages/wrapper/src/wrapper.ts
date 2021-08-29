@@ -2,6 +2,7 @@ import { Connection } from "./connection";
 import {
     ErrorResponse,
     GenericSuccessResponse,
+    GetUsersResponse,
     GetUserTodosResponse,
     Todo,
     TodoTask,
@@ -28,6 +29,13 @@ export const wrap = (connection: Connection) => ({
                 })
             }),
         },
+        admin: {
+            getUsers: (): Promise<GetUsersResponse | ErrorResponse> => new Promise((resolve, reject) => {
+                connection.fetch('user:get_todos', {}).then((f) => {
+                    resolve((f as GetUsersResponse | ErrorResponse))
+                })
+            }),
+        }
     },
 
     mutation: {
