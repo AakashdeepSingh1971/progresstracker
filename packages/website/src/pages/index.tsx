@@ -29,12 +29,11 @@ export default function Home() {
                         <span className="ml-3 text-xl">Company name</span>
                     </a>
                     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                        {/* <a className="mr-5 hover:text-gray-900">Home</a> */}
                     </nav>
                 </div>
             </header>
-            <div className="inset-0 flex items-center justify-center"> <div className="m-2"><MyModal  pass="login" button="login" form="log in " title="" /> </div>
-                <div className="m-2"><MyModal   pass="sign up" button="sign up" form="sign up" title="" /></div>
+            <div className="inset-0 flex items-center justify-center"> <div className="m-2"><MyModal pass="login" button="login" form="log in " title="" /> </div>
+                <div className="m-2"><MyModal pass="sign up" button="sign up" form="sign up" title="" /></div>
             </div>
         </div>
     );

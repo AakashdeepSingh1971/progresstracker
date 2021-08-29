@@ -446,6 +446,7 @@ __metadata:
     dotenv: ^10.0.0
     firebase-admin: ^9.11.1
     isomorphic-ws: ^4.0.1
+    typescript: ^4.4.2
     ws: ^8.2.0
   languageName: unknown
   linkType: soft
@@ -5126,7 +5127,7 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
-typescript@^4.3.4:
+"typescript@^4.3.4, typescript@^4.4.2":
   version: 4.4.2
   resolution: "typescript@npm:4.4.2"
   bin:
@@ -5146,7 +5147,7 @@ typescript@^4.3.5:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.3.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.3.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.4.2#~builtin<compat/typescript>":
   version: 4.4.2
   resolution: "typescript@patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=d8b4e7"
   bin:

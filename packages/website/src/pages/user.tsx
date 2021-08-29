@@ -2,6 +2,8 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import ProgressBar from "../components/ProgressBar";
 import { AiFillCheckCircle } from 'react-icons/ai';
+import HeadT from "../components/headT";
+import Table from "../components/table";
 export default function Home() {
   return (
     <div>
@@ -20,9 +22,7 @@ export default function Home() {
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a className="mr-5 hover:text-gray-900" href="/">Home</a>
             <a className="mr-5 hover:text-gray-900" href="/admin">Admin</a>
-            
           </nav>
-     
         </div>
       </header>
       <div className="flex h-screen mt-10">
@@ -36,45 +36,13 @@ export default function Home() {
           </div>
         </div>
         <div className=" w-3/4  ">
-          <div className="m-5" > <h2>User status</h2> <ProgressBar progress={75} /></div> 
-          <table className="table-fixed mx-3 ">
-            <thead>
-              <tr>
-                <th className="w-1/9 text-xl ">Job's</th>
-                <th className="w-1/4 text-xl">Name </th>
-                <th className="w-1/2 text-xl">Discreption</th>
-                <th className="w-1/2 text-xl">Done</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="text-center">1.</td>
-                <td className="text-center">Intro to CSS</td>
-                <td >bsdjawfsejfjsehaf eajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawk</td>
-                <td className="text-center  text-3xl "><button className=""><AiFillCheckCircle/></button></td>
-                
-              </tr>
-              <tr className="">
-                <td className="text-center">2.</td>
-                <td className="text-center">Intro to CSS</td>
-                <td >disreajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawkip</td>
-                <td className="text-center  text-3xl "><button className=""><AiFillCheckCircle/></button></td>
-
-              </tr>
-              <tr>
-                <td className="text-center">3.</td>
-                <td className="text-center">Intro to CSS</td>
-                {/* <td><ProgressBar progress={75} /></td> */}
-                <td >disreajfbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawbsdjawfsejfjsehaf eajfjaefawjaefawkip</td>
-                <td className="text-center  text-3xl "><button className=""><AiFillCheckCircle/></button></td>
-
-              </tr>
-            </tbody>
-          </table>
+          <div className="flex m-3"> <h2>Employee status </h2> </div>
+         <ProgressBar progress={50}/>
+          <HeadT />
+          <Table prog={40} number={1} job="daddy1" name="aakas1" discription="aakash1 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table prog={90} number={2} job="daddy" name="aakash" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
         </div>
       </div>
-
     </div>
   );
 }
