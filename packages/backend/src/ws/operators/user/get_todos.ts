@@ -1,10 +1,11 @@
 import OperatorExecutor from "../../classes/OperatorExecutor";
 import database from "../../../database";
+import { CheckAuth } from "../../operatorMiddleware/checkAuth";
 
 const operator = new OperatorExecutor({
-    name: 'user:auth'
+    name: 'user:get_todos'
 })
-
+operator.use(CheckAuth())
 operator.setExecutor(async (server, client, payload) => {
     if (!payload.data.username) return operator.reply(client, payload, {
         success: false,

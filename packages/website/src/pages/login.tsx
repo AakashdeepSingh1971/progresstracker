@@ -1,4 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
+import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
 import { useWrappedConn } from "../hooks/useConn";
 import {
@@ -6,6 +7,7 @@ import {
   DetailedHTMLProps,
   InputHTMLAttributes,
 } from "react"
+import { UserRole } from '../../../wrapper/lib';
 export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
@@ -14,7 +16,7 @@ export default function LogIn() {
   const [isOpen, setIsOpen] = useState(false)
   const [username,setUsername] = useState("")
   const [password,setPasword] = useState("")
-
+  const router = useRouter()
   const wrapper = useWrappedConn();
 
 
@@ -30,10 +32,13 @@ export default function LogIn() {
 const submit = (e:any) =>{
   e.preventDefault();
 
-  console.log(username,password);
   wrapper.query.user.auth(username,password).then((resp)=>{
-    console.log(resp)
-    if(!resp.success) console.log(resp.error);
+  
+    if(!resp.success) console.error(resp.error);
+    if(resp.success) {
+      if (resp.user.role==UserRole.USER) router.push("/user" )
+      if (resp.user.role==UserRole.ADMINISTRATOR) router.push("/admin" )
+    }
   })
 }
 

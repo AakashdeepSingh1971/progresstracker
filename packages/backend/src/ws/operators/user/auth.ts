@@ -9,20 +9,20 @@ operator.setExecutor(async (server, client, payload) => {
     if (!payload.data.password || !payload.data.username) return operator.reply(client, payload, {
         success: false,
         code: 4001,
-        error: 'Unauthorized'
+        error: '3Unauthorized'
     })
 
     const user = await database.getUser(payload.data.username);
     if (!user) return operator.reply(client, payload, {
         success: false,
         code: 4001,
-        error: 'Unauthorized'
+        error: '1Unauthorized'
     })
 
     if (user.password !== payload.data.password) return operator.reply(client, payload, {
         success: false,
         code: 4001,
-        error: 'Unauthorized'
+        error: '2Unauthorized'
     })
 
 
