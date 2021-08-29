@@ -4,12 +4,15 @@ import AdminProgressBar from "../components/AdminProgressBar";
 import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
 import { FiDelete } from "react-icons/fi";
+import { FC } from "react";
 
 
 export default function Home() {
   const wrapper = useWrappedConn();
   const [username, setUsername] = useState("")
   const [password, setPasword] = useState("")
+
+  const [selectedUser, setSelectedUser] = useState("");
 
 
 
@@ -54,17 +57,18 @@ export default function Home() {
       </header>
       <div className="flex h-screen mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
-          <UserCard name="dasefsfsddy" />
-          <UserCard name="dasdfsfddy" />
-          <UserCard name="dasdfsdfsddy" />
-          <UserCard name="daddy" />
-          <UserCard name="dafsfsfsddy" />
-          <UserCard name="dasfsfddy" />
-          <UserCard name="dafsfsfddy" />
-          <UserCard name="dasfsfddy" />
+          <UserCard username="r1" setSelectedUser={setSelectedUser} />
+          <UserCard username="r2" setSelectedUser={setSelectedUser} />
+          <UserCard username="r3" setSelectedUser={setSelectedUser} />
+          <UserCard username="r4" setSelectedUser={setSelectedUser} />
         </div>
         <div className=" w-3/4  ">
           <div className="flex m-3"> <h2>Employee status </h2> </div>
+
+          <Results username="r1" selectedtUsername={selectedUser} />
+          <Results username="r2" selectedtUsername={selectedUser} />
+          <Results username="r3" selectedtUsername={selectedUser} />
+          <Results username="r4" selectedtUsername={selectedUser} />
 
         </div>
         <div className="m-4">
@@ -103,22 +107,30 @@ function Row(props: {
   )
 }
 function UserCard(
-  props: { name: string }) {
-  const onClick = () => setShowResults(true)
-  const [showResults, setShowResults] = React.useState(false)
+  props: { username: string, setSelectedUser: React.Dispatch<React.SetStateAction<string>> }) {
+  const onClick = () => props.setSelectedUser(props.username);
   return (
     <div className="m-5 text-lg flex  ">
       <button type="submit" value="submit" onClick={onClick} className=" text-left w-full border-b-2 bg-blue-100 rounded-lg p-2 hover:bg-blue-200 ">
-        {props.name}
-      </button>{showResults ? <Results /> : null}
+        {props.username}
+      </button>
     </div>
   )
 }
-const Results = () => (
-  <div id="results" className=" m-3">
+
+export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
+  selectedtUsername?: string;
+  username: string;
+}
+
+const Results: FC<ResultsProps> = ({
+  selectedtUsername,
+  username,
+}) => (
+  <div id="results" className={`m-3 ${selectedtUsername !== username ? 'hidden' : ''}`}>
     <div id="myDIV">
       <div className="  flex flex-col">
-        <div className="m-5 text-2xl font-bold "> Aakash</div>
+        <div className="m-5 text-2xl font-bold ">{username}</div>
         <table>
           <thead className="table-fixed mx-3 ">
             <tr>
