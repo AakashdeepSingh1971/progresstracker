@@ -1,12 +1,25 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import ProgressBar from "../components/ProgressBar";
-// import { useWrappedConn } from "../hooks/useConn";
+import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
 
 
 export default function Home() {
+  const wrapper = useWrappedConn();
+  const [username, setUsername] = useState("")
+  const [password, setPasword] = useState("")
 
+  const submit = (e: any) => {
+    e.preventDefault();
+
+    console.log(username, password);
+    wrapper.query.user.auth(username, password).then((resp) => {
+      console.log(resp)
+      if (!resp.success) console.log(resp.error);
+      // console.log(button)
+    })
+  }
   //  const wrapper = useWrappedConn();
 
   //   wrapper.mutation.user.create('','').then((res)=>{
@@ -50,46 +63,60 @@ export default function Home() {
         </div>
         <div className=" w-3/4  ">
           <div className="flex m-3"> <h2>Employee status </h2> </div>
-          <HeadT />
-          <Table prog={30} number={1} job="daddy" name="aakash" discription="aakash11 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table prog={90} number={2} job="daddy" name="aakash" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka 
-          kakakaaakash akkakakak " />
+          <input
+            // value={username} 
+            // onChange={(e)=>{setUsername(e.target.value)}}
+            type='username'
+            className={` m-4 p-2 text-primary border border-indigo-500 rounded-md focus:ring-2 focus:ring-blue-500 outline-none text-sm transition duration-150 ease-in-out mb-4 `}
+            id='username'
+            placeholder='Search username' /><button type="button"
+              onClick={submit}
+              className="px-4 py-2 text-sm font-medium text-gray-600 bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 bg-indigo-400">Submit</button>
+          <div className=" m-5 flex flex-col">
+            <div>aakash</div>
+            <div>
+
+
+            </div>
+            {/* <HeadT />
+          <Table prog={30} number={1} job="daddy"  discription="aakash11 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table prog={90} number={2} job="daddy"  discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka 
+          kakakaaakash akkakakak " /> */}
+          </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+      )
 }
+      {/* 
+// function HeadT() {
+//   return (
+//     <table className="table-fixed mx-3 ">
+//       <thead>
+//         <tr>
+//           <th className="w-1/4 text-xl text-center ">Job no</th>
+//           <th className="w-1/4  text-xl text-center ">Job </th>
+//           <th className="w-1/4 text-xl text-center ">Progress</th>
+//           <th className="w-1/4 text-xl text-center ">Discreption</th>
+//         </tr>
+//       </thead></table>
+//   )
+// }
+// function Table(props: {
+//   prog: number, number: number,  job: string, discription: string
+// }) {
 
-function HeadT() {
-  return (
-    <table className="table-fixed mx-3 ">
-      <thead>
-        <tr>
-          <th className="w-1/9 text-xl text-center ">Job no</th>
-          <th className="w-1/7 px-10 text-xl text-center ">Job </th>
-          <th className="w-1/6 px-10 text-xl text-center ">Name </th>
-          <th className="w-1/6 text-xl text-center ">Progress</th>
-          <th className="w-1/2 text-xl text-center ">Discreption</th>
-        </tr>
-      </thead></table>
-  )
-}
-function Table(props: {
-  prog: number, number: number, name: string, job: string, discription: string
-}) {
+//   return (
 
-  return (
-
-    <table className="table-fixed mx-3 ">
-      <tbody>
-        <tr>
-          <td className="w-1/9 px-5 text-xl text-center">{props.number}</td>
-          <td className="w-1/7  text-xl text-center">{props.job}</td>
-          <td className="w-1/6 text-xl text-center">{props.name}</td>
-          <td className="w-1/6 text-xl text-center" >{<ProgressBar progress={props.prog} />}</td>
-          <td className="w-1/2 text-xl " >{props.discription}</td>
-        </tr>
-      </tbody>
-    </table>
-  )
-}
+//     <table className="table-fixed mx-3 ">
+//       <tbody>
+//         <tr>
+//           <td className="w-1/8  text-xl text-center">{props.number}</td>
+//           <td className="w-1/4  text-xl text-center">{props.job}</td>
+//           <td className="w-1/4  text-xl text-center" >{<ProgressBar progress={props.prog} />}</td>
+//           <td className="w-1/4  text-xl " >{props.discription}</td>
+//         </tr>
+//       </tbody>
+//     </table>
+//   )
+// } */}

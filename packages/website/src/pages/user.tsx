@@ -4,7 +4,9 @@ import React, {
 } from "react";
 import ProgressBar from "../components/ProgressBar";
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { useState } from "react";
 export default function Home() {
+
   return (
     <div>
       <Head>

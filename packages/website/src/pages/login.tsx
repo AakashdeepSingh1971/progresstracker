@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import { useWrappedConn } from "../hooks/useConn";
 import {
   FC,
   DetailedHTMLProps,
@@ -10,7 +11,13 @@ export type MyModalProps = DetailedHTMLProps<
   HTMLInputElement
 >;
 export default function MyModal(props: { pass: string, button: string, form: string, title: string }) {
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [username,setUsername] = useState("")
+  const [password,setPasword] = useState("")
+
+  const wrapper = useWrappedConn();
+
+
 
   function closeModal() {
     setIsOpen(false)
@@ -19,14 +26,17 @@ export default function MyModal(props: { pass: string, button: string, form: str
   function openModal() {
     setIsOpen(true)
   }
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+  
+const submit = (e:any) =>{
+  e.preventDefault();
 
-    let email = e.target.elements.email?.value;
-    let password = e.target.elements.password?.value;
+  console.log(username,password);
+  wrapper.query.user.auth(username,password).then((resp)=>{
+    console.log(resp)
+    if(!resp.success) console.log(resp.error);
+  })
+}
 
-    console.log(email, password);
-  };
 
   return (
     <>
@@ -87,18 +97,21 @@ export default function MyModal(props: { pass: string, button: string, form: str
                       <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
                         {props.form} to your account 🔐
                       </h1>
-                      <form onSubmit={handleFormSubmit}>
+                      <form onSubmit={submit}>
                         <div>
-                          <label htmlFor='email'>Email</label>
-                          <input
-                            type='email'
+                          <label htmlFor='username'>username</label>
+                          <input value={username } 
+                          onChange={(e)=>{setUsername(e.target.value)}}
+                            type='username'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                            id='email'
-                            placeholder='Your Email'/>
+                            id='username'
+                            placeholder='Your username'/>
                         </div>
                         <div>
                           <label htmlFor='password'>Password</label>
                           <input
+                          value={password } 
+                          onChange={(e)=>{setPasword(e.target.value)}}
                             type='password'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='password'
@@ -106,9 +119,9 @@ export default function MyModal(props: { pass: string, button: string, form: str
                         </div>
                         <div className='flex justify-center items-center mt-6'>
                           <button
-                            type="button"
+                            type="submit"
                             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                            onClick={closeModal}>
+                            onClick={submit}>
                             {props.button}
                           </button>
                         </div>
@@ -124,3 +137,4 @@ export default function MyModal(props: { pass: string, button: string, form: str
     </>
   )
 }
+

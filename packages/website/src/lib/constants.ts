@@ -1,1 +1,1 @@
-export const wsUrl = process.env.WS_URL || "ws://idk:8443"
+export const wsUrl = process.env.WS_URL || "ws://localhost:8443"
