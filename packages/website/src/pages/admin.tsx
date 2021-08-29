@@ -99,14 +99,7 @@ const Results = () => (
           </div>
   </div>
 )
-// function myFunction() {
-//   const x = document.getElementById("myDIV");
-//   if (VRDisplay === "none") {
-//     VRDisplay = "block";
-//   } else {
-//     x.style.display = "none";
-//   }
-// }
+
 function HeadT() {
   return (
     <table className="table-fixed mx-3 ">
