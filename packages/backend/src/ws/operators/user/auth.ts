@@ -29,7 +29,12 @@ operator.setExecutor(async (server, client, payload) => {
     server.users.auth(payload.data.username, client);
 
     return operator.reply(client, payload, {
-        success: true
+        success: true,
+        user: {
+            username: user.username,
+            id: user.id,
+            role: user.role
+        }
     })
 })
 export default operator;

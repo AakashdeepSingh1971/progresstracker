@@ -5,8 +5,6 @@ import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
 import { FiDelete } from "react-icons/fi";
 import { FC } from "react";
-import { Disclosure } from '@headlessui/react'
-import { ChevronUpIcon } from '@heroicons/react/solid'
 
 
 export default function Home() {
@@ -15,6 +13,10 @@ export default function Home() {
   const [password, setPasword] = useState("")
 
   const [selectedUser, setSelectedUser] = useState("");
+
+
+
+
   const submit = (e: any) => {
     e.preventDefault();
 
@@ -88,20 +90,32 @@ function Row(props: {
   prog: number,
   discription: string,
   delete: boolean,
+  className?: string,
 }) {
-  return (
+  const [isOpen, setIsOpen] = useState(false);
 
-    <tr>
+  return (
+    <tr className={props.className} onClick={() => setIsOpen((o) => !o)}>
       <td className="w-1/12 px-5 text-xl text-center ">{props.number}</td>
       <td className="w-1/6 text-xl text-center">{props.job}</td>
       <td className="w-1/4  text-xl text-center" >{<AdminProgressBar progress={props.prog} />}</td>
       <td className="w-1/4  text-xl " >{props.discription}</td>
       <td className="w-1/12 text-3xl text-center ">{props.delete} <button
       // onClick={prgress bar inc }
-      ><svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      > <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
     </svg></button></td>
+      {isOpen ?
+        <tr className={props.className}>
+          <td>aaaa</td>
+          <td>bbbb</td>
+          <td>cccc</td>
+          <td>dddd</td>
+          <td>eeee</td>  </tr> : null}
+
     </tr>
+
+
 
   )
 }
@@ -125,48 +139,44 @@ export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
 const Results: FC<ResultsProps> = ({
   selectedtUsername,
   username,
-}) => (
-  <div id="results" className={`m-3 ${selectedtUsername !== username ? 'hidden' : ''}`}>
-    <div id="myDIV">
-      <div className="  flex flex-col">
-        <div className="m-5 text-2xl font-bold ">{username}</div>
-        <table>
-        
-          <thead className=" mx-3 ">
-            <tr>
-              {/* <th className="w-full text-xl text-center ">Job no</th> */}
-              {/* <th className="w-1/6 text-xl text-center ">Job </th>
-              <th className="w-1/4 text-xl text-center pr-12">Progress</th>
-              <th className="w-1/4 text-xl text-center ">Discreption</th> */}
-            </tr>
-          </thead>
-          <tbody className=" mx-3">
-          <Disclosure>
-          {({ open }) => (
-            <>
-      
-              <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-black-900 bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
-                <span>Job Title</span>
-                <ChevronUpIcon
-                  className={`${
-                    open ? 'transform rotate-180' : ''
-                  } w-5 h-5 text-indigo-600`}
-                />
-              </Disclosure.Button>
-              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-              <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word word word word " />
-              <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word word word word " />
-              <Row prog={90} number={3} delete={true} job="job3" discription="word word word word word word word word word word word word word word word " />
-            <Row prog={90} number={4} delete={true} job="job4" discription="word word word word word word word word word word word word word word word " />
-            <Row prog={90} number={5} delete={true} job="job5" discription="word word word word word word word word word word word word word word word " />
-            <Row prog={90} number={6} delete={true} job="job6" discription="word word word word word word word word word word word word word word  word " />
-              </Disclosure.Panel>
-            </>
-          )}
-        </Disclosure>
-          </tbody>
-        </table>
+}) => {
+  return (
+
+    <div id="results" className={`m-3 ${selectedtUsername !== username ? 'hidden' : ''}`}>
+
+      <div id="myDIV" >
+        <div className="  flex flex-col">
+          <div className="m-5 text-2xl font-bold ">{username}</div>
+          <table>
+            <thead className="table-fixed mx-3 ">
+              <tr>
+                <th className="w-1/12 text-xl text-center ">Job no</th>
+                <th className="w-1/6 text-xl text-center ">Job </th>
+                <th className="w-1/4 text-xl text-center pr-12">Progress</th>
+                <th className="w-1/4 text-xl text-center ">Discreption</th>
+              </tr>
+            </thead>
+            <tbody className="table-fixed mx-3" >
+              <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={3} delete={true} job="job3" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={4} delete={true} job="job4" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={5} delete={true} job="job5" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={6} delete={true} job="job6" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={2} delete={true} job="job7" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={2} delete={true} job="job8" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={2} delete={true} job="job9" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={2} delete={true} job="job10" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={90} number={2} delete={true} job="job11" discription="word word word word word word word word word word word word wordwordword   " />
+
+
+
+
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}

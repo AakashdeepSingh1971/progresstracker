@@ -4,6 +4,7 @@ import {
     GenericSuccessResponse,
     Todo,
     TodoTask,
+    UserAuthResponse,
 
 } from "./types";
 
@@ -15,9 +16,9 @@ export const wrap = (connection: Connection) => ({
     connection,
     query: {
         user: {
-            auth: (username: string, password: string): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
+            auth: (username: string, password: string): Promise<UserAuthResponse | ErrorResponse> => new Promise((resolve, reject) => {
                 connection.fetch('user:auth', { username, password }).then((f) => {
-                    resolve((f as GenericSuccessResponse | ErrorResponse))
+                    resolve((f as UserAuthResponse | ErrorResponse))
                 })
             }),
         },
