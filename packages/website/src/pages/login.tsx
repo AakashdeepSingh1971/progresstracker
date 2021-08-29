@@ -10,7 +10,7 @@ export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-export default function signup() {
+export default function LogIn() {
   const [isOpen, setIsOpen] = useState(false)
   const [username,setUsername] = useState("")
   const [password,setPasword] = useState("")
@@ -46,7 +46,7 @@ const submit = (e:any) =>{
           onClick={openModal}
           className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
-          {props.pass}
+          Log in
         </button>
       </div>
 
@@ -89,13 +89,13 @@ const submit = (e:any) =>{
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900">
-                  {props.title}
+                  Login
                 </Dialog.Title>
                 <div className="mt-2">
                   <div className=' flex bg-gray-bg1'>
                     <div className='w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
                       <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
-                        {props.form} to your account 🔐
+                        Login to your account 🔐
                       </h1>
                       <form onSubmit={submit}>
                         <div>
@@ -122,7 +122,7 @@ const submit = (e:any) =>{
                             type="submit"
                             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                             onClick={submit}>
-                            {props.button}
+                            Login
                           </button>
                         </div>
                       </form>

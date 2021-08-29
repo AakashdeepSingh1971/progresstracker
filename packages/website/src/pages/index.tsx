@@ -2,7 +2,8 @@ import Head from "next/head";
 import React from "react";
 // import ProgressBar from "../components/ProgressBar";
 // import { useWrappedConn } from "../hooks/useConn";
-import MyModal from "./login";
+import LogIn from "./login";
+import SignUp from "./signup";
 
 export default function Home() {
 
@@ -32,8 +33,8 @@ export default function Home() {
                     </nav>
                 </div>
             </header>
-            <div className="inset-0 flex items-center justify-center"> <div className="m-2"><MyModal pass="login" button="login" form="log in " title="" /> </div>
-                <div className="m-2"><MyModal pass="sign up" button="sign up" form="sign up" title="" /></div>
+            <div className="inset-0 flex items-center justify-center"> <div className="m-2"> <LogIn/> </div>
+                <div className="m-2"><SignUp/></div>
             </div>
         </div>
     );
