@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class Database {
     private _serviceAccount = require(process.env.GOOGLE_SERVICE_ACC_PATH || "");
+    private _databaseUrl = process.env.DB_URL || "";
     constructor() {
         this.init();
     }
@@ -11,7 +12,7 @@ export class Database {
     init() {
         firebase.initializeApp({
             credential: firebase.credential.cert(this._serviceAccount),
-            databaseURL: 'https://aakash-proj-default-rtdb.firebaseio.com/'
+            databaseURL: this._databaseUrl
         })
     }
 

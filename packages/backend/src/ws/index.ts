@@ -36,6 +36,8 @@ export class WebsocketServer {
     addClient(id: string, ws: WebSocket) {
         this.clients.set(id, { id, ws });
 
+        console.log('Client Connected', id)
+
 
         ws.on('close', () => {
             this.removeClient(id);
@@ -49,6 +51,7 @@ export class WebsocketServer {
                 const payload: MessagePayload = JSON.parse(data as string);
                 if (!this.operators.has(payload.op)) return ws.send(JSON.stringify({ code: 1007, error: 'Invalid OP' }))
 
+                console.log(payload)
                 const operator = this.operators.get(payload.op)
                 operator?.execute(this, { id, ws }, payload);
             } catch (e) {
@@ -71,6 +74,8 @@ export class WebsocketServer {
         if (!client.ws.CLOSED) client.ws.close();
         this.users.deauth(id);
         this.clients.delete(id);
+
+        console.log('Client Disconnected', id)
     }
 
     start() {
