@@ -23,7 +23,6 @@ export default function Home() {
           </a>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a className="mr-5 hover:text-gray-900" href="/">Home</a>
-            <a className="mr-5 hover:text-gray-900" href="/admin">Admin</a>
           </nav>
         </div>
       </header>
@@ -36,13 +35,13 @@ export default function Home() {
         <table className="table-fixed mx-3 ">
           <tbody>
           <Table
-            number={1} checkbox={true} job="jas" discription="aakash1 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2} checkbox={true} job="jass2" discription="aakash  akkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+            number={1} checkbox={true} job="job1" discription="word word word word word word word word word word word word word word word" />
+          <Table number={2} checkbox={true} job="job2" discription="word word word word word word word word word word word word word word word " />
+          <Table number={2} checkbox={true} job="job3" discription="word word word word word word word word word word word word word word word " />
+          <Table number={2} checkbox={true} job="job4" discription="word word word word word word word word word word word word wordwordword " />
+          <Table number={2} checkbox={true} job="job5" discription="word word word word word word word word word word word word word word word " />
+          <Table number={2} checkbox={true} job="job6" discription="word word word word word word word word word word word word word word word " />
+          <Table number={2} checkbox={true} job="job7" discription="word word word word word word word word word word word word word word word" />
           </tbody>
     </table>
     </div>
@@ -60,12 +59,14 @@ function Table(props: {
   return (
 
     <tr>
-      <td className="w-1/12 px-5 text-xl text-center border-b-2 ">{props.number}</td>
-      <td className="w-1/6 text-xl border-b-2 ">{props.job}</td>
+      <td className="w-1/12  text-xl text-center border-b-2 ">{props.number}</td>
+      <td className="w-1/12 text-xl text-center border-b-2 ">{props.job}</td>
       <td className="w-1/4 text-xl border-b-2 " >{props.discription}</td>
       <td className="w-1/12 text-3xl text-center border-b-2 ">{props.checkbox} <button
       // onClick={prgress bar inc }
-      ><AiFillCheckCircle /></button></td>
+      ><svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg></button></td>
     </tr>
 
   )

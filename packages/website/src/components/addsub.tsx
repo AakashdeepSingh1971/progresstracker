@@ -9,7 +9,7 @@ export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-export default function MyModal(props: { pass: string, button: string, form: string, title: string }) {
+export default function MyModal(props: { pass: string, button: string, form: string}) {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -27,7 +27,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
         <button
           type="button"
           onClick={openModal}
-          className="float-right px-4 py-2 text-sm font-medium rounded-lg bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 bg-indigo-400"
+          className="px-4 py-2 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
         >
           {props.pass}
         </button>
@@ -69,12 +69,6 @@ export default function MyModal(props: { pass: string, button: string, form: str
               leaveTo="opacity-0 scale-95"
             >
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
-                  {props.title}
-                </Dialog.Title>
                 <div className="mt-2">
                   <div className=' flex bg-gray-bg1'>
                     <div className='w-full  max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
@@ -84,7 +78,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
 
                       <form >
                         <div>
-                          <label htmlFor='user'>user</label>
+                          <label htmlFor='user'>User</label>
                           <input
                             type='user'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
@@ -93,7 +87,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
                           />
                         </div>
                         <div>
-                          <label htmlFor='work'>job</label>
+                          <label htmlFor='work'>Job</label>
                           <input
                             type='work'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}

@@ -49,30 +49,29 @@ export default function Home() {
           </a>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a className="mr-5 hover:text-gray-900" href="/">Home</a>
-            <a className="mr-5 hover:text-gray-900" href="/user">User</a>
           </nav>
         </div>
       </header>
       <div className="flex h-full mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
-          <UserCard username="r1" setSelectedUser={setSelectedUser} />
-          <UserCard username="r2" setSelectedUser={setSelectedUser} />
-          <UserCard username="r3" setSelectedUser={setSelectedUser} />
-          <UserCard username="r4" setSelectedUser={setSelectedUser} />
+          <UserCard username="user1" setSelectedUser={setSelectedUser} />
+          <UserCard username="user2" setSelectedUser={setSelectedUser} />
+          <UserCard username="user3" setSelectedUser={setSelectedUser} />
+          <UserCard username="user4" setSelectedUser={setSelectedUser} />
         </div>
         <div className=" w-3/4  ">
           <div className="flex m-3"> <h2>Employee status </h2> </div>
 
-          <Results username="r1" selectedtUsername={selectedUser} />
-          <Results username="r2" selectedtUsername={selectedUser} />
-          <Results username="r3" selectedtUsername={selectedUser} />
-          <Results username="r4" selectedtUsername={selectedUser} />
+          <Results username="user1" selectedtUsername={selectedUser} />
+          <Results username="user2" selectedtUsername={selectedUser} />
+          <Results username="user3" selectedtUsername={selectedUser} />
+          <Results username="user4" selectedtUsername={selectedUser} />
 
         </div>
         <div className="m-4">
           <div className="float-right text-gray-600">
-            <div className=" text-white bg-indigo-600 rounded-lg">
-              <MyModal pass="ADD" button="ADD" form="Add job" title="" />
+            <div className="">
+              <MyModal pass="ADD" button="ADD" form="Add job"  />
             </div>
 
           </div>
@@ -99,7 +98,9 @@ function Row(props: {
       <td className="w-1/4  text-xl " >{props.discription}</td>
       <td className="w-1/12 text-3xl text-center ">{props.delete} <button
       // onClick={prgress bar inc }
-      ><FiDelete /></button></td>
+      ><svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+    </svg></button></td>
     </tr>
 
   )
@@ -133,51 +134,36 @@ const Results: FC<ResultsProps> = ({
         
           <thead className=" mx-3 ">
             <tr>
-              <th className="w-1/12 text-xl text-center ">Job no</th>
-              <th className="w-1/6 text-xl text-center ">Job </th>
+              {/* <th className="w-full text-xl text-center ">Job no</th> */}
+              {/* <th className="w-1/6 text-xl text-center ">Job </th>
               <th className="w-1/4 text-xl text-center pr-12">Progress</th>
-              <th className="w-1/4 text-xl text-center ">Discreption</th>
+              <th className="w-1/4 text-xl text-center ">Discreption</th> */}
             </tr>
           </thead>
           <tbody className=" mx-3">
           <Disclosure>
           {({ open }) => (
             <>
-            <Disclosure>
-      <Disclosure.Button className="py-2">
-        Is team pricing available?
-      </Disclosure.Button>
-      <Disclosure.Panel className="text-gray-500">
-        Yes! You can purchase a license that you can share with your entire
-        team.
-      </Disclosure.Panel>
-    </Disclosure>
-              <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+      
+              <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-black-900 bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                 <span>Job Title</span>
                 <ChevronUpIcon
                   className={`${
                     open ? 'transform rotate-180' : ''
-                  } w-5 h-5 text-purple-500`}
+                  } w-5 h-5 text-indigo-600`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-              <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word wordwordword " />
-              <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word wordwordword " />
+              <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word word word word " />
+              <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word word word word " />
+              <Row prog={90} number={3} delete={true} job="job3" discription="word word word word word word word word word word word word word word word " />
+            <Row prog={90} number={4} delete={true} job="job4" discription="word word word word word word word word word word word word word word word " />
+            <Row prog={90} number={5} delete={true} job="job5" discription="word word word word word word word word word word word word word word word " />
+            <Row prog={90} number={6} delete={true} job="job6" discription="word word word word word word word word word word word word word word  word " />
               </Disclosure.Panel>
             </>
           )}
         </Disclosure>
-            {/* <Row prog={30} number={1} delete={true} job="job1" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={2} delete={true} job="job2" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={3} delete={true} job="job3" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={4} delete={true} job="job4" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={5} delete={true} job="job5" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={6} delete={true} job="job6" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={2} delete={true} job="job7" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={2} delete={true} job="job8" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={2} delete={true} job="job9" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={2} delete={true} job="job10" discription="word word word word word word word word word word word word wordwordword " />
-            <Row prog={90} number={2} delete={true} job="job11" discription="word word word word word word word word word word word word wordwordword   " /> */}
           </tbody>
         </table>
       </div>
