@@ -1,6 +1,7 @@
 import OperatorExecutor from "../../classes/OperatorExecutor";
 import database from "../../../database";
 import { CheckAuth } from "../../operatorMiddleware/checkAuth";
+import { UserRole } from "../../../database/types";
 
 const operator = new OperatorExecutor({
     name: 'todo:delete'

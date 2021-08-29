@@ -148,7 +148,7 @@ const Results: FC<ResultsProps> = ({
       if (!resp.success) console.error(resp.error);
       if (resp.success) setTodos(resp.data);
     })
-  }, [username])
+  }, [selectedtUsername])
   return (
 
     <div id="results" className={`m-3 ${selectedtUsername !== username ? 'hidden' : ''}`}>

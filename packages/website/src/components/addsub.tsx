@@ -5,12 +5,16 @@ import {
   DetailedHTMLProps,
   InputHTMLAttributes,
 } from "react"
+import { useWrappedConn } from '../hooks/useConn';
 export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-export default function MyModal(props: { pass: string, button: string, form: string}) {
-  let [isOpen, setIsOpen] = useState(false)
+export default function MyModal(props: { pass: string, button: string, form: string }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [username, setUsername] = useState("");
+  const [todoName, setTodoName] = useState("");
+  const wrapper = useWrappedConn();
 
   function closeModal() {
     setIsOpen(false)
@@ -18,6 +22,13 @@ export default function MyModal(props: { pass: string, button: string, form: str
 
   function openModal() {
     setIsOpen(true)
+  }
+
+  const submit = () => {
+    wrapper.mutation.todo.create(username, todoName, [{ name: 'test', completed: false }]).then((resp) => {
+      if (!resp.success) console.error(resp.error);
+      if (resp.success) closeModal();
+    })
   }
 
 
@@ -80,6 +91,8 @@ export default function MyModal(props: { pass: string, button: string, form: str
                         <div>
                           <label htmlFor='user'>User</label>
                           <input
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                             type='user'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='user'
@@ -89,19 +102,12 @@ export default function MyModal(props: { pass: string, button: string, form: str
                         <div>
                           <label htmlFor='work'>Job</label>
                           <input
+                            value={todoName}
+                            onChange={(e) => setTodoName(e.target.value)}
                             type='work'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='work'
                             placeholder='job title'
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor='Discription'>Discription</label>
-                          <input
-                            type='Discription'
-                            className={`w-full break-normal overflow-ellipsis p-2 text-primary border rounded-md outline-none text-sm transition duration-150  mb-4`}
-                            id='Discription'
-                            placeholder='Job discription'
                           />
                         </div>
 
@@ -109,7 +115,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
                           <button
                             type="button"
                             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                            onClick={closeModal}
+                            onClick={submit}
                           >
                             {props.button}
                           </button>
