@@ -27,28 +27,26 @@ export default function Home() {
           </nav>
         </div>
       </header>
-    
-        
-        
-      
-        <div className="w-full">
-          <div className="flex m-3"> <h2> </h2> </div><h2 className="m-3">Progress</h2>
-          <div className="m-3 w-11/12  ">
-            <UserProgressBar  progress={50} />
-            
-          </div>
-          <h2 className="m-3">Tasks</h2>
-          {/* <HeadT /> */}
+      <div className="w-full">
+        <div className="flex m-3"> <h2> </h2> </div><h2 className="m-3">Progress</h2>
+        <div className="m-3 w-11/12  ">
+          <UserProgressBar progress={50} />
+        </div>
+        <h2 className="m-3">Tasks</h2>
+        <table className="table-fixed mx-3 ">
+          <tbody>
           <Table
             number={1} checkbox={true} job="jas" discription="aakash1 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2}  checkbox={true}  job="jass2" discription="aakash  akkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-          <Table number={2}  checkbox={true}  job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-        </div>
-      </div>
+          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2} checkbox={true} job="jass2" discription="aakash  akkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakashakkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          <Table number={2} checkbox={true} job="jass2" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
+          </tbody>
+    </table>
+    </div>
+      </div >
     
   );
 }
@@ -60,17 +58,15 @@ function Table(props: {
   discription: string,
 }) {
   return (
-    <table className="table-fixed mx-3 ">
-      <tbody>
-        <tr>
-          <td className="w-1/12 px-5 text-xl text-center border-b-2 ">{props.number}</td>
-          <td className="w-1/6 text-xl border-b-2 ">{props.job}</td>
-          <td className="w-1/4 text-xl border-b-2 " >{props.discription}</td>
-          <td className="w-1/12 text-3xl text-center border-b-2 ">{props.checkbox} <button 
-          // onClick={prgress bar inc }
-          ><AiFillCheckCircle /></button></td>
-        </tr>
-      </tbody>
-    </table>
+
+    <tr>
+      <td className="w-1/12 px-5 text-xl text-center border-b-2 ">{props.number}</td>
+      <td className="w-1/6 text-xl border-b-2 ">{props.job}</td>
+      <td className="w-1/4 text-xl border-b-2 " >{props.discription}</td>
+      <td className="w-1/12 text-3xl text-center border-b-2 ">{props.checkbox} <button
+      // onClick={prgress bar inc }
+      ><AiFillCheckCircle /></button></td>
+    </tr>
+
   )
 }

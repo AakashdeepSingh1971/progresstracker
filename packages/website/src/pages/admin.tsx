@@ -3,14 +3,15 @@ import React, { useState } from "react";
 import AdminProgressBar from "../components/AdminProgressBar";
 import { useWrappedConn } from "../hooks/useConn";
 import MyModal from "../components/addsub";
+import { FiDelete } from "react-icons/fi";
 
 
 export default function Home() {
   const wrapper = useWrappedConn();
   const [username, setUsername] = useState("")
   const [password, setPasword] = useState("")
-  const [showResults, setShowResults] = React.useState(false)
-  const onClick = () => setShowResults(true)
+
+
 
 
   const submit = (e: any) => {
@@ -20,7 +21,7 @@ export default function Home() {
     wrapper.query.user.auth(username, password).then((resp) => {
       console.log(resp)
       if (!resp.success) console.log(resp.error);
-      
+
     })
   }
   //  const wrapper = useWrappedConn();
@@ -53,81 +54,95 @@ export default function Home() {
       </header>
       <div className="flex h-screen mt-10">
         <div className="w-1/4 sticky-right-0 shadow-lg" >
-          <div className="m-4">
-            <div className=" "></div>
-            <div>
-          <div className="float-right text-gray-800"><MyModal pass="Delete" button="Delete" form="Delete job" title=" " /> </div>
-              <div className="float-left text-white bg-indigo-600 rounded-lg"><MyModal pass="ADD" button="ADD" form="Add job" title="" /> </div>
-            </div> 
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+          <UserCard name="dasefsfsddy" />
+          <UserCard name="dasdfsfddy" />
+          <UserCard name="dasdfsdfsddy" />
+          <UserCard name="daddy" />
+          <UserCard name="dafsfsfsddy" />
+          <UserCard name="dasfsfddy" />
+          <UserCard name="dafsfsfddy" />
+          <UserCard name="dasfsfddy" />
         </div>
         <div className=" w-3/4  ">
           <div className="flex m-3"> <h2>Employee status </h2> </div>
-          <input
-            // value={username} 
-            // onChange={(e)=>{setUsername(e.target.value)}}
-            
-            type='username'
-            className={` m-4 p-2 text-primary border border-indigo-500 rounded-md focus:ring-2 focus:ring-blue-500 outline-none text-sm transition duration-150 ease-in-out mb-4 `}
-            id='username'
-            placeholder='Search username' />
-           
-            
-          
-          <button type="submit" value="submit" onClick={onClick}
-                           className="px-4 py-2 text-sm font-medium text-gray-600  rounded-lg bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 bg-indigo-400">Submit</button>{showResults ? <Results /> : null}
-         
+
+        </div>
+        <div className="m-4">
+          <div className="float-right text-gray-600">
+            <div className=" text-white bg-indigo-600 rounded-lg">
+              <MyModal pass="ADD" button="ADD" form="Add job" title="" />
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
   )
 }
+
+
+function Row(props: {
+  job: string,
+  number: number,
+  prog: number,
+  discription: string,
+  delete: boolean,
+}) {
+  return (
+
+    <tr>
+      <td className="w-1/12 px-5 text-xl text-center ">{props.number}</td>
+      <td className="w-1/6 text-xl text-center">{props.job}</td>
+      <td className="w-1/4  text-xl text-center" >{<AdminProgressBar progress={props.prog} />}</td>
+      <td className="w-1/4  text-xl " >{props.discription}</td>
+      <td className="w-1/12 text-3xl text-center ">{props.delete} <button
+      // onClick={prgress bar inc }
+      ><FiDelete /></button></td>
+    </tr>
+
+  )
+}
+function UserCard(
+  props: { name: string }) {
+  const onClick = () => setShowResults(true)
+  const [showResults, setShowResults] = React.useState(false)
+  return (
+    <div className="m-5 text-lg flex  ">
+      <button type="submit" value="submit" onClick={onClick} className=" text-left w-full border-b-2 bg-blue-100 rounded-lg p-2 hover:bg-blue-200 ">
+        {props.name}
+      </button>{showResults ? <Results /> : null}
+    </div>
+  )
+}
 const Results = () => (
-  <div id="results" className="search-results  m-3">
+  <div id="results" className=" m-3">
     <div id="myDIV">
-          <div className="  flex flex-col">
-            
-              <div className="m-5 text-2xl font-bold "> Aakash
-              </div>
-              <HeadT />
-              <Table prog={30} number={1} job="daddy" discription="aakash11 akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak " />
-              <Table prog={90} number={2} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka 
-          kakakaaakash akkakakak " /></div>
-          </div>
+      <div className="  flex flex-col">
+        <div className="m-5 text-2xl font-bold "> Aakash</div>
+        <table>
+          <thead className="table-fixed mx-3 ">
+            <tr>
+              <th className="w-1/12 text-xl text-center ">Job no</th>
+              <th className="w-1/6 text-xl text-center ">Job </th>
+              <th className="w-1/4 text-xl text-center pr-12">Progress</th>
+              <th className="w-1/4 text-xl text-center ">Discreption</th>
+            </tr>
+          </thead>
+          <tbody className="table-fixed mx-3">
+            <Row prog={30} number={1} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={2} delete={true} job="dbbcbaddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={3} delete={true} job="dadccccccccccccdy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={4} delete={true} job="dadcccbc bcb  dy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={5} delete={true} job="ddfgdvdvvdv" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={6} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka  kakakaaakash akkakakak " />
+            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+            <Row prog={90} number={2} delete={true} job="daddy" discription="aakash akkakakak akkakakakaaakash akkakakak akkakakakaaakash akkakakak akka kakakaaakash akkakakak " />
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 )
-
-function HeadT() {
-  return (
-    <table className="table-fixed mx-3 ">
-      <thead>
-        <tr>
-          <th className="w-1/12 text-xl text-center ">Job no</th>
-          <th className="w-1/6 text-xl text-center ">Job </th>
-          <th className="w-1/4 text-xl text-center pr-12">Progress</th>
-          <th className="w-1/4 text-xl text-center ">Discreption</th>
-        </tr>
-      </thead></table>
-  )
-}
-function Table(props: {
-  prog: number, number: number, job: string, discription: string
-}) {
-
-  return (
-
-    <table className="table-fixed mx-3 ">
-      <tbody>
-        <tr>
-          <td className="w-1/12  text-xl text-center">{props.number}</td>
-          <td className="w-1/6  text-xl text-center">{props.job}</td>
-          <td className="w-1/4  text-xl text-center" >{<AdminProgressBar progress={props.prog} />}</td>
-          <td className="w-1/4  text-xl " >{props.discription}</td>
-        </tr>
-      </tbody>
-    </table>
-  )
-}
