@@ -31,7 +31,7 @@ export const wrap = (connection: Connection) => ({
         },
         admin: {
             getUsers: (): Promise<GetUsersResponse | ErrorResponse> => new Promise((resolve, reject) => {
-                connection.fetch('user:get_todos', {}).then((f) => {
+                connection.fetch('admin:get_users', {}).then((f) => {
                     resolve((f as GetUsersResponse | ErrorResponse))
                 })
             }),
