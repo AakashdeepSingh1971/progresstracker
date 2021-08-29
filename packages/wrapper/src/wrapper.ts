@@ -2,6 +2,7 @@ import { Connection } from "./connection";
 import {
     ErrorResponse,
     GenericSuccessResponse,
+    GetUserTodosResponse,
     Todo,
     TodoTask,
     UserAuthResponse,
@@ -19,6 +20,11 @@ export const wrap = (connection: Connection) => ({
             auth: (username: string, password: string): Promise<UserAuthResponse | ErrorResponse> => new Promise((resolve, reject) => {
                 connection.fetch('user:auth', { username, password }).then((f) => {
                     resolve((f as UserAuthResponse | ErrorResponse))
+                })
+            }),
+            getTodos: (username: string): Promise<GetUserTodosResponse | ErrorResponse> => new Promise((resolve, reject) => {
+                connection.fetch('user:get_todos', { username }).then((f) => {
+                    resolve((f as GetUserTodosResponse | ErrorResponse))
                 })
             }),
         },
