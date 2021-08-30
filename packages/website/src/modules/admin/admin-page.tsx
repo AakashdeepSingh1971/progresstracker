@@ -115,19 +115,20 @@ function UserTask(props: {
                     <>
                         <Disclosure.Button className="flex justify-between w-3/4 px-4 py-2 text-sm font-medium text-left text-white bg-indigo-400 rounded-lg hover:bg-indigo-500 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
                             <span>{props.todo.name}</span>
+                            <AdminProgressBar progress={progress} />
                             <ChevronUpIcon
                                 className={`${open ? 'transform rotate-180' : ''
                                     } w-5 h-5 text-white`}
                             />
                         </Disclosure.Button>
-                        <AdminProgressBar progress={progress} />
+
 
                         <Disclosure.Panel className="p-4 text-sm text-gray-500">
                             <br></br>
                             <div >
                                 <tbody className="table-fixed  mx-3 ">
                                     <tr>
-                                        {props.todo.tasks && props.todo.tasks.map((task) => <div className=" text-lg  mx-5" >{task.name}</div>)}
+                                        {props.todo.tasks && props.todo.tasks.map((task) => <div className=" text-lg  mx-5" key={`${props.todo.id}-${task.name}`} >{task.name}</div>)}
                                     </tr>
                                 </tbody>
                             </div>
