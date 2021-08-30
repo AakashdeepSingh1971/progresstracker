@@ -101,7 +101,9 @@ function SubTask(props: {
     task: TodoTask
 }) {
     return (
-        <div className=" text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}</div>
+        <div className=" border-solid border-gray-300 mt-4 w-full  border-b-2 text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}
+        <div className={`rounded-full w-5 h-5 float-right border-2 border-gray-400 ${props.task.completed?"bg-green-500":""}`}></div>
+        </div>
     )
 }
 function UserTask(props: {
@@ -131,10 +133,10 @@ function UserTask(props: {
                         </Disclosure.Button>
 
 
-                        <Disclosure.Panel className="p-4 text-sm text-gray-500">
+                        <Disclosure.Panel className="px-4  py-2 text-sm  w-4/6 text-gray-500">
                             <br></br>
-                            <table>
-                                <tbody className="table-fixed  mx-3 ">
+                            <table className=" w-full m-3">
+                                <tbody className="table-fixed w-full  ">
                                     <tr>
                                         {props.todo.tasks && props.todo.tasks.map((task) => <SubTask task={task} />)}
                                     </tr>
