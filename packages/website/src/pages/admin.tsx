@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useState } from "react";
 import AdminProgressBar from "../components/AdminProgressBar";
 import { useWrappedConn } from "../hooks/useConn";
-import MyModal from "../components/addsub";
+import MyModal from "../components/AddTodo";
 import { FC } from "react";
 import { Todo, User } from "@progresstracker/wrapper";
 import { useEffect } from "react";
@@ -10,8 +10,6 @@ import { useEffect } from "react";
 
 export default function Home() {
   const wrapper = useWrappedConn();
-  const [username, setUsername] = useState("")
-  const [password, setPasword] = useState("")
   const [selectedUser, setSelectedUser] = useState("");
   const [users, setUsers] = useState<User[]>();
 
@@ -25,17 +23,18 @@ export default function Home() {
   }, [wrapper.connection])
 
 
-
-  const submit = (e: any) => {
-    e.preventDefault();
-
-    console.log(username, password);
-    wrapper.query.user.auth(username, password).then((resp) => {
-      console.log(resp)
-      if (!resp.success) console.log(resp.error);
-
-    })
+  const refresh = () => {
+    let prev = "";
+    setSelectedUser((c) => {
+      prev = c;
+      return "";
+    });
+    setSelectedUser(prev)
   }
+
+
+
+
   //  const wrapper = useWrappedConn();
 
   //   wrapper.mutation.user.create('','').then((res)=>{
@@ -73,8 +72,15 @@ export default function Home() {
         </div>
         <div className="m-4">
           <div className="float-right text-gray-600">
-            <div className="">
-              <MyModal pass="ADD" button="ADD" form="Add job" />
+            <div >
+              <button
+                type="button"
+                onClick={refresh}
+                className="px-4 py-2 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
+              >
+                Refresh
+              </button>
+              <MyModal pass="ADD" button="ADD" form="Add job" selectedUser={selectedUser} />
             </div>
 
           </div>

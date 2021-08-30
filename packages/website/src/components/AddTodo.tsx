@@ -1,20 +1,28 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import { useEffect } from 'react';
 import {
   // FC,
   DetailedHTMLProps,
   InputHTMLAttributes,
 } from "react"
+import { TodoTask } from '../../../wrapper/lib';
 import { useWrappedConn } from '../hooks/useConn';
 export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-export default function MyModal(props: { pass: string, button: string, form: string }) {
+export default function MyModal(props: { pass: string, button: string, form: string, selectedUser: string }) {
   const [isOpen, setIsOpen] = useState(false)
   const [username, setUsername] = useState("");
   const [todoName, setTodoName] = useState("");
+  const [subtaskName, setSubtaskName] = useState("");
+  const [subtasks, setSubtasks] = useState<TodoTask[]>();
   const wrapper = useWrappedConn();
+
+  useEffect(() => {
+    setUsername(props.selectedUser)
+  }, [props.selectedUser])
 
   function closeModal() {
     setIsOpen(false)
@@ -25,16 +33,21 @@ export default function MyModal(props: { pass: string, button: string, form: str
   }
 
   const submit = () => {
-    wrapper.mutation.todo.create(username, todoName, [{ name: 'test', completed: false }]).then((resp) => {
+    wrapper.mutation.todo.create(username, todoName, subtasks ? subtasks : []).then((resp) => {
       if (!resp.success) console.error(resp.error);
       if (resp.success) closeModal();
     })
   }
 
+  const addSubtask = () => {
+    const task = { name: subtaskName, completed: false };
+    setSubtasks((t) => t ? t.concat(task) : [task])
+  }
+
 
   return (
     <>
-      <div className=" ">
+      <div className="">
         <button
           type="button"
           onClick={openModal}
@@ -109,6 +122,27 @@ export default function MyModal(props: { pass: string, button: string, form: str
                             id='work'
                             placeholder='job title'
                           />
+                        </div>
+
+                        <div>
+                          <label>Subtasks</label>
+                          <input
+                            value={subtaskName}
+                            onChange={(e) => setSubtaskName(e.target.value)}
+                            type='text'
+                            className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
+                            id='subtask'
+                            placeholder='Subtask Title'
+                          />
+                          <button
+                            type="button"
+                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                            onClick={addSubtask}
+                          >
+                            Add
+                          </button>
+
+                          {subtasks && subtasks.map((t) => <p>{t.name}</p>)}
                         </div>
 
                         <div className='flex justify-center items-center mt-6'>

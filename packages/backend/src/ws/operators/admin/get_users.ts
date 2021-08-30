@@ -30,7 +30,7 @@ operator.setExecutor(async (server, client, payload) => {
 
     return operator.reply(client, payload, {
         success: true,
-        data: Object.values(users)
+        data: Object.values(users).filter((u) => u.role !== UserRole.ADMINISTRATOR)
     })
 })
 export default operator;
