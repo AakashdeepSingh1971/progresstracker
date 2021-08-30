@@ -145,25 +145,29 @@ function UserTask(props:{
   //   })
   // }, [selectedtUsername])
   return(
-    <div className="w-full  p-2 mx-auto bg-white rounded-2xl">
+    <div className="w-full  p-2  bg-white rounded-2xl">
+      
     <Disclosure>
       {({ open }) => (
         <>
-          <Disclosure.Button className="flex justify-between w-3/4 px-4 py-2 text-sm font-medium text-left text-white bg-indigo-400 rounded-lg hover:bg-indigo-500 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
+          <div className=" flex flex-row   bg-white">
+          <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-white bg-indigo-400 rounded-lg hover:bg-indigo-500 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
             <span>{props.JOBname}</span>
+            <AdminProgressBar progress={props.prog} />
             <ChevronUpIcon
               className={`${
                 open ? 'transform rotate-180' : ''
-              } w-5 h-5 text-white`}
+              }  h-5 text-white`}
             />
           </Disclosure.Button>
-          <AdminProgressBar progress={props.prog} />
-
+          </div>
           <Disclosure.Panel className="p-4 text-sm text-gray-500">
            <br></br>
             <div className={props.className}>
-            <tbody className="table-fixed  mx-3 ">
+            <tbody className="table-fixed   ">
               <tr>
+                <div className=" text-lg  mx-5" >{props.SubJob}</div>       
+                <div className=" text-lg  mx-5" >{props.SubJob}</div>       
                 <div className=" text-lg  mx-5" >{props.SubJob}</div>       
               </tr>
            </tbody>  
@@ -199,7 +203,7 @@ const Results: FC<ResultsProps> = ({
         <div className="  ">
           <div className="m-5 text-2xl font-bold ">{username}</div>
        
-            <UserTask SubJob="job1"className="hjdasjdkh" JOBname="JOB NAME"  prog={34}/>
+            <UserTask SubJob="job1 "className="hjdasjdkh" JOBname="  JOB NAME  "  prog={34}/>
             <UserTask SubJob="job1"className="hjdasjdkh" JOBname="JOB NAME"  prog={34}/>
             <UserTask SubJob="job1"className="hjdasjdkh" JOBname="JOB NAME"  prog={34}/>
             <UserTask SubJob="job1"className="hjdasjdkh" JOBname="JOB NAME"  prog={34}/>
