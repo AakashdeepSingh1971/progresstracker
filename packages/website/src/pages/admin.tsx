@@ -22,26 +22,15 @@ export default function Home() {
     })
   }, [wrapper.connection])
 
+  useEffect(() => { console.log(selectedUser) }, [selectedUser])
+
 
   const refresh = () => {
-    let prev = "";
-    setSelectedUser((c) => {
-      prev = c;
-      return "";
-    });
-    setSelectedUser(prev)
+    setSelectedUser("");
+    setTimeout(() => {
+      setSelectedUser(selectedUser)
+    }, 500)
   }
-
-
-
-
-  //  const wrapper = useWrappedConn();
-
-  //   wrapper.mutation.user.create('','').then((res)=>{
-  //     if(!res.success) res.error
-  //   })
-
-  // wrapper.query.user.auth('','')
 
   return (
     <div>
