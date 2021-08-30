@@ -113,7 +113,7 @@ function UserTask(props: {
             <Disclosure>
                 {({ open }) => (
                     <>
-                        <Disclosure.Button className="flex justify-between w-3/4 px-4 py-2 text-sm font-medium text-left text-white bg-indigo-400 rounded-lg hover:bg-indigo-500 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
+                        <Disclosure.Button className="flex justify-between w-3/4 px-4 py-2 text-sm font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
                             <span>{props.todo.name}</span>
                             <AdminProgressBar progress={progress} />
                             <ChevronUpIcon
