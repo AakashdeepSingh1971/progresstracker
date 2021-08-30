@@ -8,14 +8,15 @@ import {
   InputHTMLAttributes,
 } from "react"
 import { UserRole } from '../../../wrapper/lib';
+import { useAuthStore } from '../modules/auth/useAuthStore';
 export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
 export default function LogIn() {
   const [isOpen, setIsOpen] = useState(false)
-  const [username,setUsername] = useState("")
-  const [password,setPasword] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPasword] = useState("")
   const router = useRouter()
   const wrapper = useWrappedConn();
 
@@ -28,19 +29,20 @@ export default function LogIn() {
   function openModal() {
     setIsOpen(true)
   }
-  
-const submit = (e:any) =>{
-  e.preventDefault();
 
-  wrapper.query.user.auth(username,password).then((resp)=>{
-  
-    if(!resp.success) console.error(resp.error);
-    if(resp.success) {
-      if (resp.user.role==UserRole.USER) router.push("/user" )
-      if (resp.user.role==UserRole.ADMINISTRATOR) router.push("/admin" )
-    }
-  })
-}
+  const submit = (e: any) => {
+    e.preventDefault();
+
+    wrapper.query.user.auth(username, password).then((resp) => {
+
+      if (!resp.success) console.error(resp.error);
+      if (resp.success) {
+        useAuthStore.getState().setAuth({ username, password });
+        if (resp.user.role == UserRole.USER) router.push("/user")
+        if (resp.user.role == UserRole.ADMINISTRATOR) router.push("/admin")
+      }
+    })
+  }
 
 
   return (
@@ -105,22 +107,22 @@ const submit = (e:any) =>{
                       <form onSubmit={submit}>
                         <div>
                           <label htmlFor='username'>username</label>
-                          <input value={username } 
-                          onChange={(e)=>{setUsername(e.target.value)}}
+                          <input value={username}
+                            onChange={(e) => { setUsername(e.target.value) }}
                             type='username'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='username'
-                            placeholder='Your username'/>
+                            placeholder='Your username' />
                         </div>
                         <div>
                           <label htmlFor='password'>Password</label>
                           <input
-                          value={password } 
-                          onChange={(e)=>{setPasword(e.target.value)}}
+                            value={password}
+                            onChange={(e) => { setPasword(e.target.value) }}
                             type='password'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='password'
-                            placeholder='Your Password'/>
+                            placeholder='Your Password' />
                         </div>
                         <div className='flex justify-center items-center mt-6'>
                           <button
