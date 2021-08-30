@@ -2,6 +2,7 @@ import OperatorExecutor from "../../classes/OperatorExecutor";
 import database from "../../../database";
 import { CheckAuth } from "../../operatorMiddleware/checkAuth";
 import { UserRole } from "../../../database/types";
+import { v4 as uuidv4 } from "uuid";
 
 const operator = new OperatorExecutor({
     name: 'todo:create'
@@ -29,6 +30,12 @@ operator.setExecutor(async (server, client, payload) => {
         code: 4001,
         error: 'Unauthorized'
     })
+
+    for (let index = 0; index < payload.data.tasks.length; index++) {
+        const task = payload.data.tasks[index];
+        task.id = uuidv4();
+        payload.data.tasks[index] = task;
+    }
     const success = await database.createTodo(admin.username, payload.data.username, payload.data.name, payload.data.tasks)
 
     return operator.reply(client, payload, {
