@@ -18,9 +18,6 @@ const AdminProgressBar: FC<ProgressBarOpts> = ({ progress = 0 }) => {
     }, 10, 5000)
   }, [progress])
 
-  useEffect(() => {
-    console.log(progress)
-  }, [progress])
 
   return (
     <div ref={barRef} className="flex m-0.5 h-4 mx-2 w-2/4 bg-gray-300 rounded-md ">
