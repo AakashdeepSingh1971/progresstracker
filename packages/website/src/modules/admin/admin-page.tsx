@@ -97,16 +97,16 @@ export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
     selectedtUsername?: string;
     username: string;
 }
-function SubTask(props:{
-    task:TodoTask
-}){
-    return(
-        <div className=" text-lg  mx-5" key={`${props.todo.id}-${props.task.name}`} >{props.task.name}{props.task.completed}</div>
+function SubTask(props: {
+    task: TodoTask
+}) {
+    return (
+        <div className=" text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}</div>
     )
 }
 function UserTask(props: {
     todo: Todo
-    
+
 }) {
     props.todo.tasks = Object.values(props.todo.tasks);
     const [progress, setProgress] = useState(0);
@@ -136,10 +136,10 @@ function UserTask(props: {
                             <table>
                                 <tbody className="table-fixed  mx-3 ">
                                     <tr>
-                                        {props.todo.tasks && props.todo.tasks.map((task) => )}
+                                        {props.todo.tasks && props.todo.tasks.map((task) => <SubTask task={task} />)}
                                     </tr>
                                 </tbody>
-                                </table>
+                            </table>
                         </Disclosure.Panel>
                     </>
                 )}

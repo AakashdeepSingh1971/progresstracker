@@ -32,6 +32,7 @@ export interface ErrorResponse {
 export interface TodoTask {
     name: string;
     completed: boolean;
+    id: string;
 }
 
 export interface Todo {
