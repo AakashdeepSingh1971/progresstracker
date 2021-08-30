@@ -6,13 +6,15 @@ import MyModal from "../components/AddTodo";
 import { FC } from "react";
 import { Todo, User } from "@progresstracker/wrapper";
 import { useEffect } from "react";
+import { Disclosure } from '@headlessui/react'
+import { ChevronUpIcon } from '@heroicons/react/solid'
 
 
 export default function Home() {
   const wrapper = useWrappedConn();
   const [selectedUser, setSelectedUser] = useState("");
   const [users, setUsers] = useState<User[]>();
-
+ 
 
   useEffect(() => {
     if (!wrapper.connection) return;
@@ -24,13 +26,14 @@ export default function Home() {
 
   useEffect(() => { console.log(selectedUser) }, [selectedUser])
 
-
+ 
   const refresh = () => {
     setSelectedUser("");
     setTimeout(() => {
       setSelectedUser(selectedUser)
     }, 500)
-  }
+  
+}
 
   return (
     <div>
@@ -56,23 +59,20 @@ export default function Home() {
           {users && users.map((u) => <UserCard key={u.username} username={u.username} setSelectedUser={setSelectedUser} />)}
         </div>
         <div className=" w-3/4  ">
-          <div className=" w-1/2m-3"> <h2>Employee status </h2> </div>
-          {users && users.map((u) => <Results key={u.username} username={u.username} selectedtUsername={selectedUser} />)}
-          </div>
-        <div className="m-4">
-          <div className=" text-gray-600">
-          
+          <div className="  m-3"> <h2>Employee status 
               <button
                 type="button"
                 onClick={refresh}
-                className="px-4 py-2 float-left text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
+                className="px-4 py-2  float-right
+                 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
               >
                 Refresh
               </button>
               <MyModal pass="Add" button="Add" form="Add job" selectedUser={selectedUser} />
-        
-              
+             </h2>
+             
           </div>
+          {users && users.map((u) => <Results key={u.username} username={u.username} selectedtUsername={selectedUser} />)}
         </div>
       </div>
     </div>
@@ -95,24 +95,21 @@ function Row(props: {
       <td className="w-1/12 px-5 text-xl text-center ">{props.number}</td>
       <td className="w-1/6 text-xl text-center">{props.job}</td>
       <td className="w-1/4  text-xl text-center" >{<AdminProgressBar progress={props.prog} />}</td>
-      <td className="w-1/4  text-xl " >{props.discription}</td>
-      <td className="w-1/12 text-3xl text-center ">{props.delete} <button
-      // onClick={prgress bar inc }
-      > <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-        </svg></button></td>
+      {/* <td className="w-1/4  text-xl " >{props.discription}</td> */}
+     
       {isOpen ?
+   
         <tr className={props.className}>
-          <td>aaaa</td>
-          <td>bbbb</td>
-          <td>cccc</td>
-          <td>dddd</td>
-          <td>eeee</td>  </tr> : null}
-
+          <div>aaaa</div>
+          <div>bbbb</div>
+          <div>cccc</div>
+          <div>dddd</div>
+          <div>eeee</div>     </tr> : null}
+        
     </tr>
 
 
-
+ 
   )
 }
 function UserCard(
@@ -123,6 +120,7 @@ function UserCard(
       <button type="submit" value="submit" onClick={onClick} className=" text-left w-full border-b-2 bg-blue-100 rounded-lg p-2 hover:bg-blue-200 ">
         {props.username}
       </button>
+    
     </div>
   )
 }
@@ -131,7 +129,56 @@ export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
   selectedtUsername?: string;
   username: string;
 }
+function UserTask(props:{
+  JOBname:string,
+  className:string,
+  SubJob:string,
+  prog: number,
+})
+{
+  //   const [todos, setTodos] = useState<Todo[]>()
+  // const wrapper = useWrappedConn();
+  // useEffect(() => {
+  //   wrapper.query.user.getTodos(username).then((resp) => {
+  //     if (!resp.success) console.error(resp.error);
+  //     if (resp.success) setTodos(resp.data);
+  //   })
+  // }, [selectedtUsername])
+  return(
+    <div className="w-full  p-2 mx-auto bg-white rounded-2xl">
+    <Disclosure>
+      {({ open }) => (
+        <>
+          <Disclosure.Button className="flex justify-between w-3/4 px-4 py-2 text-sm font-medium text-left text-white bg-indigo-400 rounded-lg hover:bg-indigo-500 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
+            <span>{props.JOBname}</span>
+            <ChevronUpIcon
+              className={`${
+                open ? 'transform rotate-180' : ''
+              } w-5 h-5 text-white`}
+            />
+          </Disclosure.Button>
+          <AdminProgressBar progress={props.prog} />
 
+          <Disclosure.Panel className="p-4 text-sm text-gray-500">
+           <br></br>
+            <div className={props.className}>
+            <tbody className="table-fixed  mx-3 ">
+              <tr>
+                <div className=" text-lg  mx-5" >{props.SubJob}</div>       
+              </tr>
+           </tbody>  
+           </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
+    
+  </div>
+  
+
+  )
+  
+}
 const Results: FC<ResultsProps> = ({
   selectedtUsername,
   username,
@@ -149,23 +196,20 @@ const Results: FC<ResultsProps> = ({
     <div id="results" className={`m-3 ${selectedtUsername !== username ? 'hidden' : ''}`}>
 
       <div id="myDIV" >
-        <div className="  flex flex-col">
+        <div className="  ">
           <div className="m-5 text-2xl font-bold ">{username}</div>
-          <table>
-            <thead className="table-fixed mx-3 ">
-              <tr>
-                <th className="w-1/12 text-xl text-center ">Job no</th>
-                <th className="w-1/6 text-xl text-center ">Job </th>
-                <th className="w-1/4 text-xl text-center pr-12">Progress</th>
-                <th className="w-1/4 text-xl text-center ">Discreption</th>
-              </tr>
-            </thead>
-            <tbody className="table-fixed mx-3" >
-              {todos && todos.map((t) => <Row prog={30} number={1} delete={true} job={t.name} key={t.id} discription="" />)}
-            </tbody>
-          </table>
+       
+            <UserTask SubJob="job1"className="hjdasjdkh" JOBname="JOB NAME"  prog={34}/>
+            <UserTask SubJob="job1"className="hjdasjdkh" JOBname="JOB NAME"  prog={34}/>
+            <UserTask SubJob="job1"className="hjdasjdkh" JOBname="JOB NAME"  prog={34}/>
+            <UserTask SubJob="job1"className="hjdasjdkh" JOBname="JOB NAME"  prog={34}/>
+           
+          
         </div>
       </div>
+      
+
     </div>
   )
 }
+

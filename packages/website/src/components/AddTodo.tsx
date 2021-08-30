@@ -47,15 +47,15 @@ export default function MyModal(props: { pass: string, button: string, form: str
 
   return (
     <>
-      <div className="">
+      
         <button
           type="button"
           onClick={openModal}
-          className="px-4 py-2  text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
+          className="px-4 py-2 float-right mr-3 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
         >
           {props.pass}
         </button>
-      </div>
+      
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
