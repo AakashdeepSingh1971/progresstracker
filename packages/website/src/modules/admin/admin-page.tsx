@@ -4,7 +4,7 @@ import AdminProgressBar from "../../components/AdminProgressBar";
 import { useWrappedConn } from "../../hooks/useConn";
 import MyModal from "../../components/AddTodo";
 import { FC } from "react";
-import { Todo, User } from "@progresstracker/wrapper";
+import { Todo, TodoTask, User } from "@progresstracker/wrapper";
 import { useEffect } from "react";
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
@@ -97,8 +97,16 @@ export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
     selectedtUsername?: string;
     username: string;
 }
+function SubTask(props:{
+    task:TodoTask
+}){
+    return(
+        <div className=" text-lg  mx-5" key={`${props.todo.id}-${props.task.name}`} >{props.task.name}{props.task.completed}</div>
+    )
+}
 function UserTask(props: {
     todo: Todo
+    
 }) {
     props.todo.tasks = Object.values(props.todo.tasks);
     const [progress, setProgress] = useState(0);
@@ -128,7 +136,7 @@ function UserTask(props: {
                             <table>
                                 <tbody className="table-fixed  mx-3 ">
                                     <tr>
-                                        {props.todo.tasks && props.todo.tasks.map((task) => <div className=" text-lg  mx-5" key={`${props.todo.id}-${task.name}`} >{task.name}</div>)}
+                                        {props.todo.tasks && props.todo.tasks.map((task) => )}
                                     </tr>
                                 </tbody>
                                 </table>
