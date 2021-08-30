@@ -121,14 +121,14 @@ function UserTask(props: {
                                     } w-5 h-5 text-white`}
                             />
                         </Disclosure.Button>
-                        
+
 
                         <Disclosure.Panel className="p-4 text-sm text-gray-500">
                             <br></br>
                             <table>
                                 <tbody className="table-fixed  mx-3 ">
                                     <tr>
-                                        {props.todo.tasks && props.todo.tasks.map((task) => <div className=" text-lg  mx-5" >{task.name}</div>)}
+                                        {props.todo.tasks && props.todo.tasks.map((task) => <div className=" text-lg  mx-5" key={`${props.todo.id}-${task.name}`} >{task.name}</div>)}
                                     </tr>
                                 </tbody>
                                 </table>
