@@ -143,7 +143,7 @@ function UserTask(props: {
                            
                             <ChevronUpIcon
                                 className={`${open ? 'transform rotate-180' : ''
-                                    } w-6  h-6  float-right text-black`}
+                                    } w-12  h-8 float-right text-black`}
                             /> 
                         </Disclosure.Button>
                         <Update  pass="Update" button="Close" form="Update job" 
