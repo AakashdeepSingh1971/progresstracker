@@ -56,23 +56,20 @@ export default function Home() {
           {users && users.map((u) => <UserCard key={u.username} username={u.username} setSelectedUser={setSelectedUser} />)}
         </div>
         <div className=" w-3/4  ">
-          <div className="flex m-3"> <h2>Employee status </h2> </div>
-          {users && users.map((u) => <Results key={u.username} username={u.username} selectedtUsername={selectedUser} />)}
-        </div>
-        <div className="m-4">
-          <div className="float-right text-gray-600">
-            <div >
+          <div className="  m-3"> <h2>Employee status </h2>
+            <div className=" m-4 ">
               <button
                 type="button"
                 onClick={refresh}
-                className="px-4 py-2 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
+                className="px-4 py-2  float-right
+                 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
               >
                 Refresh
               </button>
-              <MyModal pass="ADD" button="ADD" form="Add job" selectedUser={selectedUser} />
+              <MyModal pass="Add" button="Add" form="Add job" selectedUser={selectedUser} />
             </div>
-
           </div>
+          {users && users.map((u) => <Results key={u.username} username={u.username} selectedtUsername={selectedUser} />)}
         </div>
       </div>
     </div>
@@ -107,7 +104,8 @@ function Row(props: {
           <td>bbbb</td>
           <td>cccc</td>
           <td>dddd</td>
-          <td>eeee</td>  </tr> : null}
+          <td>eeee</td>
+        </tr> : null}
 
     </tr>
 

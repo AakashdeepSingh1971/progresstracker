@@ -4,6 +4,8 @@ import React, {
 } from "react";
 import UserProgressBar from "../components/UserProgressBar";
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { useWrappedConn } from "../hooks/useConn";
+
 import { useState } from "react";
 export default function Home() {
 
@@ -27,7 +29,7 @@ export default function Home() {
         </div>
       </header>
       <div className="w-full">
-        <div className="flex m-3"> <h2> </h2> </div><h2 className="m-3">Progress</h2>
+        <div className="flex m-3">  </div><h2 className="m-3">Progress</h2>
         <div className="m-3 w-11/12  ">
           <UserProgressBar progress={50} />
         </div>
