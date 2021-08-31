@@ -72,7 +72,10 @@ export default function AdminPage() {
                     </h2>
 
                     </div>
-                    {users && users.map((u) => <Results key={u.username} username={u.username} selectedtUsername={selectedUser} />)}
+                    {users && users.map((u) => <Results
+                     key={u.username}
+                     username={u.username} 
+                     selectedtUsername={selectedUser} />)}
                 </div>
             </div>
         </div>
@@ -102,7 +105,7 @@ function SubTask(props: {
 }) {
     return (
         <div className=" border-solid border-gray-300 mt-4 w-full  border-b-2 text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}
-        <div className={`rounded-full w-5 h-5 float-right border-2 border-gray-400 ${props.task.completed?"bg-green-500":""}`}></div>
+        <div className={`rounded-full w-5 h-5 float-right border-2 border-gray-400 ${props.task.completed?"bg-green-400 border-none filter":""}`}></div>
         </div>
     )
 }
@@ -119,22 +122,22 @@ function UserTask(props: {
     }, [props.todo.tasks])
 
     return (
-        <div className="w-full  p-2 mx-auto bg-white rounded-2xl">
+        <div className=" p-2 mx-auto  rounded-2xl">
             <Disclosure>
                 {({ open }) => (
                     <>
-                        <Disclosure.Button className="flex justify-between w-3/4 px-4 py-2 text-sm font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
-                            <span>{props.todo.name}</span>
-                            <AdminProgressBar progress={progress} />
+                        <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
+                            
+                            <div className=" w-11/12 text-left  float-left">
+                            {props.todo.name} 
+                            </div>
+                            < AdminProgressBar  progress={progress} />
                             <ChevronUpIcon
                                 className={`${open ? 'transform rotate-180' : ''
-                                    } w-5 h-5 text-white`}
-                            />
+                                    } w-6  h-6  float-right text-black`}
+                            /> 
                         </Disclosure.Button>
-
-
-                        <Disclosure.Panel className="px-4  py-2 text-sm  w-4/6 text-gray-500">
-                            <br></br>
+                        <Disclosure.Panel className="px-4  py-2 text-sm  w-11/12 text-gray-500">
                             <table className=" w-full m-3">
                                 <tbody className="table-fixed w-full  ">
                                     <tr>
@@ -171,7 +174,7 @@ const Results: FC<ResultsProps> = ({
 
             <div id="myDIV" >
                 <div className="  ">
-                    <div className="m-5 text-2xl font-bold ">{username}</div>
+                    <div className="m-5 text-2xl w-3 font-bold ">{username}</div>
 
                     {todos && todos.map((todo) => <UserTask todo={todo} key={todo.id} />)}
 

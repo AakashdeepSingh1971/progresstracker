@@ -95,7 +95,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 <div className="mt-2">
                   <div className=' flex bg-gray-bg1'>
-                    <div className='w-full  max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
+                    <div className='w-full  max-w-md m-auto bg-white rounded-lg border border-primary Border shadow-default py-10 px-16'>
                       <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
                         {props.form}
                       </h1>
@@ -126,11 +126,11 @@ export default function MyModal(props: { pass: string, button: string, form: str
 
                         <div>
                           <label>Subtasks</label>
-                          <input
+                          <textarea
                             value={subtaskName}
                             onChange={(e) => setSubtaskName(e.target.value)}
-                            type='text'
-                            className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
+                            // type='text'
+                            className={`resize-y  w-full overflow-clip p-2 normal-case text-primary border rounded-md outline-none text-sm transition duration-150  mb-4`}
                             id='subtask'
                             placeholder='Subtask Title'
                           />

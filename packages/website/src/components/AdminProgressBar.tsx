@@ -20,10 +20,12 @@ const AdminProgressBar: FC<ProgressBarOpts> = ({ progress = 0 }) => {
 
 
   return (
-    <div ref={barRef} className="flex m-0.5 h-4 mx-2 w-2/4 bg-indigo-100 rounded-md ">
+    <div className="flex m-0.5 h-4 mx-2 float-right w-full "> 
+    <div ref={barRef} className=" m-0.5 h-4 mx-2 w-3/4 bg-indigo-100 rounded-md ">
       <div ref={progressRef} className="bg-blue-600 rounded-md progressbar-bar h-4 " style={{
         width: `${prog}%`
       }}></div>
+    </div>
     </div>
   )
 }
