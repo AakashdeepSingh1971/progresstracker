@@ -8,6 +8,8 @@ import { Todo, TodoTask, User } from "@progresstracker/wrapper";
 import { useEffect } from "react";
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
+import Update from "../../components/update";
+import Delete from "../../components/delete";
 
 
 export default function AdminPage() {
@@ -104,8 +106,12 @@ function SubTask(props: {
     task: TodoTask
 }) {
     return (
-        <div className=" border-solid border-gray-300 mt-4 w-full  border-b-2 text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}
-        <div className={`rounded-full w-5 h-5 float-right border-2 border-gray-400 ${props.task.completed?"bg-green-400 border-none filter":""}`}></div>
+        <div className=" border-solid border-gray-300 mt-4  border-b-2 text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}
+        <button className="rounded-full w-5 h-5 float-right border-2 bg-gray-500 border-gray-400 hover:bg-red-700 border-none filter">
+             {/* delete */}
+         </button>
+        <div className={`rounded-full w-5 h-5 mr-2 float-right border-2 border-gray-400 ${props.task.completed?"bg-green-400 border-none filter":""}`}> </div> 
+      
         </div>
     )
 }
@@ -126,25 +132,48 @@ function UserTask(props: {
             <Disclosure>
                 {({ open }) => (
                     <>
-                        <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
+                    <div  className="flex ">
+                        <Disclosure.Button className="flex justify-between w-5/6 px-4 text-xl py-2  font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
                             
                             <div className=" w-11/12 text-left  float-left">
                             {props.todo.name} 
                             </div>
                             < AdminProgressBar  progress={progress} />
+                           
+                           
                             <ChevronUpIcon
                                 className={`${open ? 'transform rotate-180' : ''
                                     } w-6  h-6  float-right text-black`}
                             /> 
                         </Disclosure.Button>
-                        <Disclosure.Panel className="px-4  py-2 text-sm  w-11/12 text-gray-500">
+                        <Update  pass="Update" button="Close" form="Update job" 
+                            // selectedUser={selectedUser}
+                            selectedUser=""
+                            /> 
+                            {/* <Delete  pass="Delete" button="Close" form="Delete job" 
+                            // selectedUser={selectedUser}
+                            selectedUser=""
+                            /> */}</div>
+                        <Disclosure.Panel className="px-4  py-2 text-sm  w-5/6 text-gray-500">
                             <table className=" w-full m-3">
                                 <tbody className="table-fixed w-full  ">
                                     <tr>
                                         {props.todo.tasks && props.todo.tasks.map((task) => <SubTask task={task} />)}
+                                        
                                     </tr>
                                 </tbody>
+                                {/* <button
+                            type="button"
+                            className="inline-flex float-right justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                            // onClick={addSubtask}
+                          >
+                            Update
+                          </button> */}<Delete  pass="Update" button="Close" form="Update job" 
+                            // selectedUser={selectedUser}
+                            selectedUser=""
+                            />
                             </table>
+                            
                         </Disclosure.Panel>
                     </>
                 )}

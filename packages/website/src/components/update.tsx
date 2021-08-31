@@ -12,7 +12,7 @@ export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-export default function MyModal(props: { pass: string, button: string, form: string, selectedUser: string }) {
+export default function Update(props: { pass: string, button: string, form: string, selectedUser: string }) {
   const [isOpen, setIsOpen] = useState(false)
   const [username, setUsername] = useState("");
   const [todoName, setTodoName] = useState("");
@@ -31,6 +31,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
   function openModal() {
     setIsOpen(true)
   }
+  props: { 
 
   const submit = () => {
     wrapper.mutation.todo.create(username, todoName, subtasks ? subtasks : []).then((resp) => {
@@ -51,7 +52,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
         <button
           type="button"
           onClick={openModal}
-          className="px-4 py-2 float-right mr-3 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
+          className="px-4 py-2 float-right mx-1 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
         >
           {props.pass}
         </button>
@@ -134,13 +135,13 @@ export default function MyModal(props: { pass: string, button: string, form: str
                             id='subtask'
                             placeholder='Subtask Title'
                           />
-                          <button
+                          {/* <button
                             type="button"
                             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                             onClick={addSubtask}
                           >
                             Add
-                          </button> 
+                          </button>  */}
                           <button
                             type="button"
                             className="inline-flex justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
@@ -148,13 +149,13 @@ export default function MyModal(props: { pass: string, button: string, form: str
                           >
                             Update
                           </button>
-                          <button
+                          {/* <button
                             type="button"
                             className="inline-flex justify-center px-4  py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                             onClick={addSubtask}
                           >
                             Delete
-                          </button>
+                          </button> */}
 
                           {subtasks && subtasks.map((t) => <p>{t.name}</p>)}
                         </div>
@@ -163,7 +164,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
                           <button
                             type="button"
                             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                            onClick={submit}
+                            onClick={closeModal}
                           >
                             {props.button}
                           </button>
@@ -181,4 +182,4 @@ export default function MyModal(props: { pass: string, button: string, form: str
       </Transition>
     </>
   )
-}
+}}
