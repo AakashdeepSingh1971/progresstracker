@@ -1,8 +1,8 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import AdminProgressBar from "../../components/AdminProgressBar";
+import ProgressBar from "../../components/ProgressBar";
 import { useWrappedConn } from "../../hooks/useConn";
-import MyModal from "../../components/AddTodo";
+import AddUser from "../../components/AddTodo";
 import { FC } from "react";
 import { Todo, TodoTask, User } from "@progresstracker/wrapper";
 import { useEffect } from "react";
@@ -22,7 +22,7 @@ export default function AdminPage() {
         if (!wrapper.connection) return;
         wrapper.query.admin.getUsers().then((resp) => {
             if (!resp.success) console.error(resp.error);
-            if (resp.success) setUsers(resp.data);
+            if (resp.success) setUsers(resp.data.sort());
         })
     }, [wrapper.connection])
 
@@ -53,6 +53,7 @@ export default function AdminPage() {
                     </a>
                     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                         <a className="mr-5 hover:text-gray-900" href="/">Home</a>
+
                     </nav>
                 </div>
             </header>
@@ -70,14 +71,14 @@ export default function AdminPage() {
                         >
                             Refresh
                         </button>
-                        <MyModal pass="Add" button="Add" form="Add job" selectedUser={selectedUser} />
+                        <AddUser pass="Add" button="Add" form="Add job" selectedUser={selectedUser} />
                     </h2>
 
                     </div>
                     {users && users.map((u) => <Results
-                     key={u.username}
-                     username={u.username} 
-                     selectedtUsername={selectedUser} />)}
+                        key={u.username}
+                        username={u.username}
+                        selectedtUsername={selectedUser} />)}
                 </div>
             </div>
         </div>
@@ -107,20 +108,25 @@ function SubTask(props: {
 }) {
     return (
         <div className=" border-solid border-gray-300 mt-4  border-b-2 text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}
-        <button className="rounded-full w-5 h-5 float-right border-2 bg-gray-500 border-gray-400 hover:bg-red-700 border-none filter">
-             {/* delete */}
-         </button>
-        <div className={`rounded-full w-5 h-5 mr-2 float-right border-2 border-gray-400 ${props.task.completed?"bg-green-400 border-none filter":""}`}> </div> 
-      
+
+            <div className={`rounded-full w-5 h-5 mr-2 float-right border-2 border-gray-400 ${props.task.completed ? "bg-green-400 border-none filter" : ""}`}> </div>
+
         </div>
     )
 }
+
 function UserTask(props: {
-    todo: Todo
+    todo: Todo,
+    username: string
 
 }) {
     props.todo.tasks = Object.values(props.todo.tasks);
     const [progress, setProgress] = useState(0);
+    const wrapper = useWrappedConn();
+
+    const deleteTodo = () => {
+        wrapper.mutation.todo.delete(props.username, props.todo.id);
+    }
 
     useEffect(() => {
         const prog = (props.todo.tasks.filter((t) => t.completed == true).length / props.todo.tasks.length) * 100;
@@ -132,48 +138,40 @@ function UserTask(props: {
             <Disclosure>
                 {({ open }) => (
                     <>
-                    <div  className="flex ">
-                        <Disclosure.Button className="flex justify-between w-5/6 px-4 text-xl py-2  font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
-                            
-                            <div className=" w-11/12 text-left  float-left">
-                            {props.todo.name} 
-                            </div>
-                            < AdminProgressBar  progress={progress} />
-                           
-                           
-                            <ChevronUpIcon
-                                className={`${open ? 'transform rotate-180' : ''
-                                    } w-12  h-8 float-right text-black`}
-                            /> 
-                        </Disclosure.Button>
-                        <Update  pass="Update" button="Close" form="Update job" 
-                            // selectedUser={selectedUser}
-                            selectedUser=""
-                            /> 
-                            {/* <Delete  pass="Delete" button="Close" form="Delete job" 
-                            // selectedUser={selectedUser}
-                            selectedUser=""
-                            /> */}</div>
+                        <div className="flex ">
+                            <Disclosure.Button className="flex justify-between w-5/6 px-4 text-xl py-2  font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
+
+                                <div className=" w-11/12 text-left  float-left">
+                                    {props.todo.name}
+                                </div>
+                                <ProgressBar progress={progress} type="admin" className="mt-2" />
+
+
+                                <ChevronUpIcon
+                                    className={`${open ? 'transform rotate-180' : ''
+                                        } w-12  h-8 float-right text-black`}
+                                />
+                            </Disclosure.Button>
+                            <Update todo={props.todo} username={props.username} button="Close"
+                                // selectedUser={selectedUser}
+                                selectedUser=""
+                            />
+                            <button onClick={deleteTodo} className=" inline-flex float-right justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500  " >Delete </button>
+                        </div>
                         <Disclosure.Panel className="px-4  py-2 text-sm  w-5/6 text-gray-500">
                             <table className=" w-full m-3">
                                 <tbody className="table-fixed w-full  ">
                                     <tr>
                                         {props.todo.tasks && props.todo.tasks.map((task) => <SubTask task={task} />)}
-                                        
+
                                     </tr>
                                 </tbody>
-                                {/* <button
-                            type="button"
-                            className="inline-flex float-right justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                            // onClick={addSubtask}
-                          >
-                            Update
-                          </button> */}<Delete  pass="Update" button="Close" form="Update job" 
-                            // selectedUser={selectedUser}
-                            selectedUser=""
-                            />
+                                <Update todo={props.todo} username="  "
+                                // selectedUser={selectedUser}
+
+                                />
                             </table>
-                            
+
                         </Disclosure.Panel>
                     </>
                 )}

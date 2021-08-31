@@ -12,7 +12,7 @@ export const WaitForAuth: FC = ({ children }) => {
 
     if (!connContext.authed) return (
         <div>
-            <p>Loading 2</p>
+            <p>Loading</p>
         </div>
     );
 

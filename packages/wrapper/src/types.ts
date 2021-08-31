@@ -11,6 +11,12 @@ export interface UserAuthResponse {
         id: string,
         role: UserRole
     }
+    newToken: string;
+}
+
+export interface UserCreateResponse {
+    success: true,
+    token: string;
 }
 
 export interface GetUserTodosResponse {

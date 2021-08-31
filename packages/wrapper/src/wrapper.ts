@@ -7,6 +7,7 @@ import {
     Todo,
     TodoTask,
     UserAuthResponse,
+    UserCreateResponse,
 
 } from "./types";
 
@@ -18,8 +19,8 @@ export const wrap = (connection: Connection) => ({
     connection,
     query: {
         user: {
-            auth: (username: string, password: string): Promise<UserAuthResponse | ErrorResponse> => new Promise((resolve, reject) => {
-                connection.fetch('user:auth', { username, password }).then((f) => {
+            auth: (username: string, password?: string, token?: string): Promise<UserAuthResponse | ErrorResponse> => new Promise((resolve, reject) => {
+                connection.fetch('user:auth', { username, password, token }).then((f) => {
                     resolve((f as UserAuthResponse | ErrorResponse))
                 })
             }),
@@ -40,9 +41,9 @@ export const wrap = (connection: Connection) => ({
 
     mutation: {
         user: {
-            create: (username: string, password: string): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
+            create: (username: string, password: string): Promise<UserCreateResponse | ErrorResponse> => new Promise((resolve, reject) => {
                 connection.fetch('user:create', { username, password }).then((f) => {
-                    resolve((f as GenericSuccessResponse | ErrorResponse))
+                    resolve((f as UserCreateResponse | ErrorResponse))
                 })
             }),
         },

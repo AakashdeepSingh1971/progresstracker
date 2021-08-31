@@ -3,6 +3,7 @@ export interface User {
     username: string;
     role: UserRole;
     password: string;
+    jti: string;
 }
 
 export enum UserRole {
@@ -13,4 +14,5 @@ export enum UserRole {
 export type createUserOptions = {
     username: string;
     password: string;
+    jti: string;
 }

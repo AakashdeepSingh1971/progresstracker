@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react"
 import { useWrappedConn } from "../hooks/useConn";
+import { useAuthStore } from "../modules/auth/useAuthStore";
 export type MyModalProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
@@ -31,9 +32,8 @@ export default function SignUp() {
   const submit = (e: any) => {
     e.preventDefault();
 
-    console.log(username, password);
     wrapper.mutation.user.create(username, password).then((resp) => {
-      console.log(resp)
+      if (resp.success) useAuthStore.getState().setAuth({ token: resp.token, username })
       if (!resp.success) console.log(resp.error);
     })
   }
