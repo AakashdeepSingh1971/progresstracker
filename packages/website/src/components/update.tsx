@@ -52,7 +52,7 @@ export default function Update(props: { pass: string, button: string, form: stri
         <button
           type="button"
           onClick={openModal}
-          className="px-4 py-2 float-right mx-1 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
+          className="px-4 py-2 float-right mx-1 text-md font-medium rounded-lg bg-opacity-100 hover:bg-indigo-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-black bg-indigo-200 "
         >
           {props.pass}
         </button>
@@ -135,13 +135,6 @@ export default function Update(props: { pass: string, button: string, form: stri
                             id='subtask'
                             placeholder='Subtask Title'
                           />
-                          {/* <button
-                            type="button"
-                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                            onClick={addSubtask}
-                          >
-                            Add
-                          </button>  */}
                           <button
                             type="button"
                             className="inline-flex justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
@@ -149,14 +142,6 @@ export default function Update(props: { pass: string, button: string, form: stri
                           >
                             Update
                           </button>
-                          {/* <button
-                            type="button"
-                            className="inline-flex justify-center px-4  py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                            onClick={addSubtask}
-                          >
-                            Delete
-                          </button> */}
-
                           {subtasks && subtasks.map((t) => <p>{t.name}</p>)}
                         </div>
 
