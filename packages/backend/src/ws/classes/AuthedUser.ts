@@ -9,7 +9,7 @@ export class AuthedUser {
 
     constructor(username: string, wsClient: { id: string; ws: WebSocket }) {
         this._wsClient = wsClient;
-        this._role = UserRole.USER;
+        this._role = UserRole.ADMINISTRATOR;
         this._username = username;
 
         this.fetch();
