@@ -24,12 +24,13 @@ export const WebSocketProvider: React.FC = ({ children }) => {
     const { pathname, replace } = useRouter();
     const isConnecting = useRef(false);
     const [authed, setAuthed] = useState(false);
-    const hasAuth = useAuthStore((s) => s.password && s.username);
+    const hasAuth = useAuthStore((s) => s.token && s.username);
     const router = useRouter()
 
     const onAuth = (resp: any) => {
         if (resp.success) {
             setAuthed(true);
+            useAuthStore.getState().setToken({ token: resp.newToken })
             if (pathname === "/") {
                 if (resp.user.role == UserRole.USER) router.push("/user")
                 if (resp.user.role == UserRole.ADMINISTRATOR) router.push("/admin")
@@ -45,14 +46,14 @@ export const WebSocketProvider: React.FC = ({ children }) => {
 
             const params: {
                 url?: string;
-                auth?: { username: string, password: string };
+                auth?: { username: string, token: string };
                 onAuth?: (data: unknown) => void;
             } = { url: wsUrl };
 
             if (hasAuth) {
-                const password = useAuthStore.getState().password;
+                const token = useAuthStore.getState().token;
                 const username = useAuthStore.getState().username;
-                params.auth = { password, username }
+                params.auth = { token, username }
                 params.onAuth = onAuth;
             }
 

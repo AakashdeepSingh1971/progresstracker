@@ -38,7 +38,7 @@ export const connect = (
         onAuth = (data: unknown) => { },
     }: {
         url?: string;
-        auth?: { username: string, password: string };
+        auth?: { username: string, token: string };
         onAuth?: (data: unknown) => void;
     }
 ): Promise<Connection> => new Promise((resolve, reject) => {

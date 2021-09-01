@@ -21,24 +21,24 @@ export class AuthManager {
         const ref = db.ref(`todos/${username}`)
 
         ref.on('child_added', (data) => {
-            client.ws.send({
+            client.ws.send(JSON.stringify({
                 op: 'todo:added',
                 data: data.toJSON()
-            });
+            }));
         })
 
         ref.on('child_changed', (data) => {
-            client.ws.send({
+            client.ws.send(JSON.stringify({
                 op: 'todo:updated',
                 data: data.toJSON()
-            });
+            }));
         })
 
         ref.on('child_removed', (data) => {
-            client.ws.send({
+            client.ws.send(JSON.stringify({
                 op: 'todo:deleted',
                 data: data.toJSON()
-            });
+            }));
         })
     }
 

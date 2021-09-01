@@ -8,11 +8,11 @@ import {
 } from "react"
 import { TodoTask } from '../../../wrapper/lib';
 import { useWrappedConn } from '../hooks/useConn';
-export type MyModalProps = DetailedHTMLProps<
+export type AddUserProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-export default function MyModal(props: { pass: string, button: string, form: string, selectedUser: string }) {
+export default function AddUser(props: { pass: string, button: string, form: string, selectedUser: string }) {
   const [isOpen, setIsOpen] = useState(false)
   const [username, setUsername] = useState("");
   const [todoName, setTodoName] = useState("");
@@ -40,22 +40,22 @@ export default function MyModal(props: { pass: string, button: string, form: str
   }
 
   const addSubtask = () => {
-    const task = { name: subtaskName, completed: false };
+    const task = { name: subtaskName, completed: false, id: '' };
     setSubtasks((t) => t ? t.concat(task) : [task])
   }
 
 
   return (
     <>
-      
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 float-right mr-3 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
-        >
-          {props.pass}
-        </button>
-      
+
+      <button
+        type="button"
+        onClick={openModal}
+        className="px-4 py-2 float-right mr-3 text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
+      >
+        {props.pass}
+      </button>
+
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
@@ -140,7 +140,7 @@ export default function MyModal(props: { pass: string, button: string, form: str
                             onClick={addSubtask}
                           >
                             Add
-                          </button> 
+                          </button>
                           <button
                             type="button"
                             className="inline-flex justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"

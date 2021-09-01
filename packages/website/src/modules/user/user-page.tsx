@@ -1,43 +1,25 @@
 import Head from "next/head";
-import React, { useState } from "react";
-import ProgressBar from "../../components/ProgressBar";
+import React, { useEffect } from "react";
+import UserProgressBar from "../../components/ProgressBar";
 import { useWrappedConn } from "../../hooks/useConn";
-import AddUser from "../../components/AddTodo";
 import { FC } from "react";
-import { Todo, TodoTask, User } from "@progresstracker/wrapper";
-import { useEffect } from "react";
-import { Disclosure } from '@headlessui/react'
-import { ChevronUpIcon } from '@heroicons/react/solid'
+import { useState } from "react";
+import { Disclosure } from "@headlessui/react";
+import { ChevronUpIcon } from "@heroicons/react/solid";
+import { Todo, TodoTask, User } from "../../../../wrapper/lib";
+import ProgressBar from "../../components/ProgressBar";
 import Update from "../../components/update";
-import Delete from "../../components/delete";
-import { PinDropSharp } from "@material-ui/icons";
-
-
-export default function AdminPage() {
-    const wrapper = useWrappedConn();
-    const [selectedUser, setSelectedUser] = useState("");
-    const [users, setUsers] = useState<User[]>();
-
-
-    useEffect(() => {
-        if (!wrapper.connection) return;
-        wrapper.query.admin.getUsers().then((resp) => {
-            if (!resp.success) console.error(resp.error);
-            if (resp.success) setUsers(resp.data.sort());
-        })
-    }, [wrapper.connection])
-
-    useEffect(() => { console.log(selectedUser) }, [selectedUser])
-
+export default function UserPage() {
+   
 
     const refresh = () => {
-        setSelectedUser("");
+        console.log(refresh)
+        // setSelectedUser("");
         setTimeout(() => {
-            setSelectedUser(selectedUser)
+            // setSelectedUser(selectedUser)
         }, 500)
-
+const todo="lol"
     }
-
     return (
         <div>
             <Head>
@@ -54,85 +36,39 @@ export default function AdminPage() {
                     </a>
                     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                         <a className="mr-5 hover:text-gray-900" href="/">Home</a>
-
                     </nav>
                 </div>
             </header>
-            <div className="flex h-full mt-10">
-                <div className="w-1/4 sticky-right-0 shadow-lg" >
-                    {users && users.map((u) => <UserCard key={u.username} username={u.username} setSelectedUser={setSelectedUser} />)}
-                </div>
-                <div className=" w-3/4  ">
-                    <div className="  m-3"> <h2>Employee status
-                        <button
+            <div className="w-full">
+                <div className="flex m-3">  </div><h2 className="m-3">Progress</h2>
+                <button
                             type="button"
                             onClick={refresh}
                             className="px-4 py-2  float-right
                  text-sm font-medium rounded-lg bg-opacity-100 hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75  text-white bg-indigo-600 "
-                        >
-                            Refresh
+                        >  Refresh
                         </button>
-                        <AddUser pass="Add" button="Add" form="Add job" selectedUser={selectedUser} />
-                    </h2>
-
-                    </div>
-                    {users && users.map((u) => <Results
-                        key={u.username}
-                        username={u.username}
-                        selectedtUsername={selectedUser} />)}
+                <div className="m-3 w-11/12  ">
+                    <UserProgressBar progress={50} type="user" />
                 </div>
+                <h2 className="m-3">Tasks</h2>
+                
+                <UserTask todo="todo" username={"selectedtUsername"} key={todo.id} />)}
+
             </div>
-        </div>
-    )
+        </div >
+
+    );
 }
 
 
-function UserCard(
-    props: { username: string, setSelectedUser: React.Dispatch<React.SetStateAction<string>> }) {
-    const onClick = () => props.setSelectedUser(props.username);
-    return (
-        <div className="m-5 text-lg  ">
-            <button type="submit" value="submit" onClick={onClick} className=" text-left w-full border-b-2 bg-blue-100 rounded-lg p-2 hover:bg-blue-200 ">
-                {props.username}
-            </button>
-
-        </div>
-    )
-}
-
-export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
-    selectedtUsername?: string;
-    username: string;
-}
-function SubTask(props: {
-    task: TodoTask
-}) {
-    return (
-        <div className=" border-solid border-gray-300 mt-4  border-b-2 text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}
-
-            <div className={`rounded-full w-5 h-5 mr-2 float-right border-2 border-gray-400 ${props.task.completed ? "bg-green-400 border-none filter" : ""}`}> </div>
-
-        </div>
-    )
-}
 
 function UserTask(props: {
-    todo: Todo,
+    todo: string,
     username: string
 
 }) {
-    props.todo.tasks = Object.values(props.todo.tasks);
-    const [progress, setProgress] = useState(0);
-    const wrapper = useWrappedConn();
-
-    const deleteTodo = () => {
-        wrapper.mutation.todo.delete(props.username, props.todo.id);
-    }
-
-    useEffect(() => {
-        const prog = (props.todo.tasks.filter((t) => t.completed == true).length / props.todo.tasks.length) * 100;
-        setProgress(prog)
-    }, [props.todo.tasks])
+   
 
     return (
         <div className=" p-2 mx-auto  rounded-2xl">
@@ -143,9 +79,9 @@ function UserTask(props: {
                             <Disclosure.Button className="flex justify-between w-5/6 px-4 text-xl py-2  font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
 
                                 <div className=" w-11/12 text-left  float-left">
-                                    {props.todo.name}
+                                    {props.todo}
                                 </div>
-                                <ProgressBar progress={progress} type="admin" className="mt-2" />
+                                <ProgressBar progress={80} type="admin" className="mt-2" />
 
 
                                 <ChevronUpIcon
@@ -153,7 +89,7 @@ function UserTask(props: {
                                         } w-12  h-8 float-right text-black`}
                                 />
                             </Disclosure.Button>
-                            <Update todo={props.todo} username={props.username} 
+                            {/* <Update {props.todo} username={props.username}  */}
                                 
                             />
                             <button onClick={deleteTodo} className=" inline-flex float-right justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500  " >Delete </button>
@@ -166,7 +102,8 @@ function UserTask(props: {
 
                                     </tr>
                                 </tbody>
-                                <Update todo={props.todo} username={props.username} 
+                                <Update todo={props.todo} username="  "
+                                // selectedUser={selectedUser}
 
                                 />
                             </table>
@@ -181,6 +118,21 @@ function UserTask(props: {
 
     )
 
+}
+export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
+    selectedtUsername?: string;
+    username: string;
+}
+function SubTask(props: {
+    task: TodoTask
+}) {
+    return (
+        <div className=" border-solid border-gray-300 mt-4  border-b-2 text-lg  mx-5" key={`${props.task.id}-${props.task.name}`} >{props.task.name}{props.task.completed}
+
+            <div className={`rounded-full w-5 h-5 mr-2 float-right border-2 border-gray-400 ${props.task.completed ? "bg-green-400 border-none filter" : ""}`}> </div>
+
+        </div>
+    )
 }
 const Results: FC<ResultsProps> = ({
     selectedtUsername,

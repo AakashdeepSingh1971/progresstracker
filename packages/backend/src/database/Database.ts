@@ -22,16 +22,29 @@ export class Database {
         return false;
     }
 
+
+    async changeUserJTI(username: string, jti: string) {
+        const ref = firebase.database().ref(`users/${username}`);
+
+        const snap = await ref.once('value');
+        if (!snap.exists()) return false;
+
+        await ref.update({ jti });
+
+        return false
+    }
+
     async createUser(user: createUserOptions) {
         if (!user.password) return false;
         if (!user.username) return false;
+        if (!user.jti) return false;
 
         const ref = firebase.database().ref(`users/${user.username}`);
 
         const snap = await ref.once('value');
         if (snap.exists()) return false;
 
-        await ref.set({ username: user.username, password: user.password, role: UserRole.USER });
+        await ref.set({ username: user.username, password: user.password, jti: user.jti, role: UserRole.USER });
 
         return true;
     }
