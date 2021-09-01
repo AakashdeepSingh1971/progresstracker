@@ -9,8 +9,7 @@ import { useEffect } from "react";
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 import Update from "../../components/update";
-import Delete from "../../components/delete";
-import { PinDropSharp } from "@material-ui/icons";
+
 
 
 export default function AdminPage() {
@@ -98,7 +97,7 @@ function UserCard(
 
         </div>
     )
-}
+} 
 
 export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
     selectedtUsername?: string;
@@ -153,14 +152,14 @@ function UserTask(props: {
                                         } w-12  h-8 float-right text-black`}
                                 />
                             </Disclosure.Button>
-                            <Update todo={props.todo} username={props.username} 
+                            <Update todo={props.todo}  username={props.username} 
                                 
                             />
                             <button onClick={deleteTodo} className=" inline-flex float-right justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500  " >Delete </button>
                         </div>
                         <Disclosure.Panel className="px-4  py-2 text-sm  w-5/6 text-gray-500">
                             <table className=" w-full m-3">
-                                <tbody className="table-fixed w-full  ">
+                                <tbody className="table-fixed   ">
                                     <tr>
                                         {props.todo.tasks && props.todo.tasks.map((task) => <SubTask task={task} />)}
 
