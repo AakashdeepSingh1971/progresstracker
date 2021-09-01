@@ -12,7 +12,7 @@ export type AddUserProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-export default function AddUser(props: { pass: string, button: string, form: string, selectedUser: string }) {
+export default function AddUser(props: { pass: string, button: string, form: string, selectedUser: string, refresh: () => void }) {
   const [isOpen, setIsOpen] = useState(false)
   const [username, setUsername] = useState("");
   const [todoName, setTodoName] = useState("");
@@ -35,7 +35,7 @@ export default function AddUser(props: { pass: string, button: string, form: str
   const submit = () => {
     wrapper.mutation.todo.create(username, todoName, subtasks ? subtasks : []).then((resp) => {
       if (!resp.success) console.error(resp.error);
-      if (resp.success) closeModal();
+      if (resp.success) { closeModal(); props.refresh() }
     })
   }
 

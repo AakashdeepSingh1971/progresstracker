@@ -94,11 +94,35 @@ export class Database {
         return true;
     }
 
+    async updateTodoProgress(username: string, todoId: string, tasks: Array<{ taskId: string, completed: boolean }>) {
+        if (!username) return false;
+        if (!todoId) return false;
+        if (tasks.length == 0) return false;
+
+        const ref = firebase.database().ref(`todos/${username}/${todoId}`);
+
+        const snap = await ref.once('value');
+        if (!snap.exists()) return false;
+
+        let data = (snap.toJSON() as any).tasks;
+        data = Object.values(data)
+
+        for (let index = 0; index < tasks.length; index++) {
+            const task = tasks[index];
+            const idx = data.findIndex((t) => t.id == task.taskId);
+
+            data[idx].completed = task.completed
+        }
+
+        await ref.update({ tasks: data });
+
+        return true;
+    }
+
     async deleteTodo(adminUsername: string, username: string, todoId: string) {
         if (!username) return false;
         if (!adminUsername) return false;
         if (!todoId) return false;
-
         const admin = await this.getUser(adminUsername);
         if (!admin) return false;
         if (admin.role !== UserRole.ADMINISTRATOR) return false;

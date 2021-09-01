@@ -63,15 +63,20 @@ export const wrap = (connection: Connection) => ({
                     resolve((f as GenericSuccessResponse | ErrorResponse))
                 })
             }),
+            updateProgress: (id: string, tasks: Array<{ taskId: string, completed: boolean }>): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
+                connection.fetch('todo:update_progress', { id, tasks }).then((f) => {
+                    resolve((f as GenericSuccessResponse | ErrorResponse))
+                })
+            }),
         }
     },
     subscribe: {
         todo: {
-            update: (handler: Handler<Todo>) =>
+            update: (handler: Handler<{ op: string, data: Todo }>) =>
                 connection.addListener("todo:updated", handler),
-            added: (handler: Handler<Todo>) =>
+            added: (handler: Handler<{ op: string, data: Todo }>) =>
                 connection.addListener("todo:added", handler),
-            deleted: (handler: Handler<{ id: string }>) =>
+            deleted: (handler: Handler<{ op: string, data: Todo }>) =>
                 connection.addListener("todo:deleted", handler),
         }
     }

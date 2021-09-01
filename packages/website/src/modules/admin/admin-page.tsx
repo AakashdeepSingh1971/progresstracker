@@ -71,7 +71,7 @@ export default function AdminPage() {
                         >
                             Refresh
                         </button>
-                        <AddUser pass="Add" button="Add" form="Add job" selectedUser={selectedUser} />
+                        <AddUser pass="Add" button="Add" form="Add job" selectedUser={selectedUser} refresh={refresh} />
                     </h2>
 
                     </div>
@@ -97,7 +97,7 @@ function UserCard(
 
         </div>
     )
-} 
+}
 
 export interface ResultsProps extends React.HTMLAttributes<HTMLDivElement> {
     selectedtUsername?: string;
@@ -152,8 +152,8 @@ function UserTask(props: {
                                         } w-12  h-8 float-right text-black`}
                                 />
                             </Disclosure.Button>
-                            <Update todo={props.todo}  username={props.username} 
-                                
+                            <Update todo={props.todo} username={props.username}
+
                             />
                             <button onClick={deleteTodo} className=" inline-flex float-right justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500  " >Delete </button>
                         </div>
@@ -165,7 +165,7 @@ function UserTask(props: {
 
                                     </tr>
                                 </tbody>
-                                <Update todo={props.todo} username={props.username} 
+                                <Update todo={props.todo} username={props.username}
 
                                 />
                             </table>
@@ -189,7 +189,8 @@ const Results: FC<ResultsProps> = ({
     const wrapper = useWrappedConn();
     useEffect(() => {
         wrapper.query.user.getTodos(username).then((resp) => {
-            if (!resp.success) console.error(resp.error);
+            console.log(resp)
+            if (!resp.success) { setTodos([]); console.error(resp.error); }
             if (resp.success) setTodos(resp.data);
         })
     }, [selectedtUsername])
@@ -201,7 +202,7 @@ const Results: FC<ResultsProps> = ({
                 <div className="  ">
                     <div className="m-5 text-2xl w-3 font-bold ">{username}</div>
 
-                    {todos && todos.map((todo) => <UserTask todo={todo} username={"selectedtUsername"} key={todo.id} />)}
+                    {todos && todos.map((todo) => <UserTask todo={todo} username={selectedtUsername || ""} key={todo.id} />)}
 
                 </div>
             </div>

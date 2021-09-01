@@ -11,7 +11,7 @@ const barTypes = {
   admin: 'm-0.5 h-4 mx-2 w-3/4 bg-indigo-100 rounded-md'
 }
 
-const UserProgressBar: FC<ProgressBarOpts> = ({ progress = 0, type, className = "" }) => {
+const ProgressBar: FC<ProgressBarOpts> = ({ progress = 0, type, className = "" }) => {
   const barRef = useRef(null);
   const progressRef = useRef(null);
   const [prog, setProg] = useState(0);
@@ -21,8 +21,8 @@ const UserProgressBar: FC<ProgressBarOpts> = ({ progress = 0, type, className = 
       setProg((p) =>
         p < progress ? p + 0.75 : p
       );
-    }, 10, 5000)
-  }, [])
+    }, 10, 5000);
+  }, [progress])
 
   return (
     <div ref={barRef} className={`${type == 'user' ? barTypes.user : barTypes.admin} ${className}`}>
@@ -33,4 +33,4 @@ const UserProgressBar: FC<ProgressBarOpts> = ({ progress = 0, type, className = 
   )
 }
 
-export default UserProgressBar;
+export default ProgressBar;
