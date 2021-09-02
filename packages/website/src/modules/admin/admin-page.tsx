@@ -40,7 +40,7 @@ export default function AdminPage() {
     return (
         <div>
             <Head>
-                <title>JassWind</title>
+                <title>Admin</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <header className="text-gray-600 body-font shadow-lg">
@@ -53,6 +53,8 @@ export default function AdminPage() {
                     </a>
                     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                         <a className="mr-5 hover:text-gray-900" href="/">Home</a>
+                        <a className="mr-5 hover:text-gray-900" href="/logout">Logout</a>
+
 
                     </nav>
                 </div>
@@ -152,9 +154,7 @@ function UserTask(props: {
                                         } w-12  h-8 float-right text-black`}
                                 />
                             </Disclosure.Button>
-                            <Update todo={props.todo} username={props.username}
-
-                            />
+                         
                             <button onClick={deleteTodo} className=" inline-flex float-right justify-center px-4 m-2 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500  " >Delete </button>
                         </div>
                         <Disclosure.Panel className="px-4  py-2 text-sm  w-5/6 text-gray-500">

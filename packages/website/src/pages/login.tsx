@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
 import { useWrappedConn } from "../hooks/useConn";
 import {
-  FC,
   DetailedHTMLProps,
   InputHTMLAttributes,
 } from "react"
@@ -76,7 +75,6 @@ export default function LogIn() {
               <Dialog.Overlay className="fixed inset-0" />
             </Transition.Child>
 
-            {/* This element is to trick the browser into centering the modal contents. */}
             <span
               className="inline-block h-screen align-middle"
               aria-hidden="true"

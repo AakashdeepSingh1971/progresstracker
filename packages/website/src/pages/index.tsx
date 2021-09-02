@@ -1,23 +1,9 @@
 import Head from "next/head";
 import React from "react";
-// import ProgressBar from "../components/ProgressBar";
-// import { useWrappedConn } from "../hooks/useConn";
 import LogIn from "./login";
 import SignUp from "./signup";
 
 export default function Home() {
-
-    //  const wrapper = useWrappedConn();
-
-    //   wrapper.mutation.user.create(' ',' ').then((res)=>{
-    //     if(!res.success) res.error
-    //   })
-
-    // wrapper.query.user.auth(' ',' ')
-    // wrapper.mutation.todo.create(' ',[])
-    // wrapper.mutation.todo.update(' ',' ',[])
-    // wrapper.mutation.todo.delete(' ',)
-
     return (
         <div>
             <Head>

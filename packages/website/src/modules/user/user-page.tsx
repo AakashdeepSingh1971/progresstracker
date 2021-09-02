@@ -9,10 +9,15 @@ import { useEffect } from "react";
 import { useWrappedConn } from "../../hooks/useConn";
 
 
-export default function UserPage(props: { task: string, job: string }) {
+export default function UserPage() {
     const [todos, setTodos] = useState<Todo[]>([]);
+    const [prog, setProg] = useState(0);
     const wrapper = useWrappedConn();
 
+   
+
+  
+  
     useEffect(() => {
         wrapper.subscribe.todo.added((todo) => {
             todo.data.tasks = Object.values(todo.data.tasks)
@@ -35,7 +40,7 @@ export default function UserPage(props: { task: string, job: string }) {
     return (
         <div>
             <Head>
-                <title>JassWind</title>
+                <title>User</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <header className="text-gray-600 body-font shadow-lg">
@@ -56,11 +61,12 @@ export default function UserPage(props: { task: string, job: string }) {
                 <div className="flex m-3">  </div><h2 className="m-3">Progress</h2>
 
                 <div className="m-3 w-11/12  ">
-                    <ProgressBar progress={50} type="user" />
+                <ProgressBar progress={prog} type="user" className="mt-2" />
                 </div>
                 <h2 className="m-3">Tasks</h2>
                 {todos && todos.map((todo) => <Tasks todo={todo} key={todo.id} />)}
-
+               
+                             
             </div>  </div>
     )
 
@@ -128,13 +134,11 @@ function Tasks(props: { todo: Todo }) {
     )
 
 
-    // {/* <UserTask todo="todo" username={"selectedtUsername"} key={todo.id} />)} */}
 }
 
 
 
 function SubTask(props: {
-    // task: TodoTask
     todoId: string,
     task: TodoTask
 }) {
