@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <div>
             <Head>
-                <title>JassWind</title>
+                <title>login</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <header className="text-gray-600 body-font shadow-lg">
