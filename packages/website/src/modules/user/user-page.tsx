@@ -14,29 +14,34 @@ export default function UserPage() {
     const [prog, setProg] = useState(0);
     const wrapper = useWrappedConn();
 
-   
-
-  
-  
     useEffect(() => {
         wrapper.subscribe.todo.added((todo) => {
             todo.data.tasks = Object.values(todo.data.tasks)
-            setTodos((t) => t ? t.concat(todo.data) : [])
+            setTodos((t) => t ? t.concat(todo.data) : [todo.data])
         })
         wrapper.subscribe.todo.update((todo) => {
-            console.log(todo);
             todo.data.tasks = Object.values(todo.data.tasks)
             setTodos((t) => t.filter((to) => to.id !== todo.data.id));
-            setTodos((t) => t ? t.concat(todo.data) : [])
+            setTodos((t) => t ? t.concat(todo.data) : [todo.data])
         })
         wrapper.subscribe.todo.deleted((data) => {
             setTodos((t) => t.filter((todo) => todo.id !== data.data.id))
         })
-
         wrapper.query.todo.subscribe().then((resp) => {
             if (!resp.success) console.error(resp.error)
-        })
+        });
     }, [])
+
+    useEffect(()=>{
+        if(todos.length == 0) return;
+        const completed = todos.map((todo)=> todo.tasks.filter((task)=>task.completed == true))[0];
+        const total = todos.map((todo)=> todo.tasks)[0];
+
+        const progress = (completed.length / total.length) * 100;
+        console.log(progress);
+        setProg(progress)
+    }, [todos]);
+
     return (
         <div>
             <Head>
@@ -61,7 +66,7 @@ export default function UserPage() {
                 <div className="flex m-3">  </div><h2 className="m-3">Progress</h2>
 
                 <div className="m-3 w-11/12  ">
-                <ProgressBar progress={prog} type="user" className="mt-2" />
+               {prog ?<ProgressBar progress={prog} type="user" className="mt-2" />: <ProgressBar progress={0} type="user" className="mt-2" />} 
                 </div>
                 <h2 className="m-3">Tasks</h2>
                 {todos && todos.map((todo) => <Tasks todo={todo} key={todo.id} />)}
