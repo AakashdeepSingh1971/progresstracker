@@ -3,6 +3,8 @@
 ## Steps to get this running
 
 ### Install Dependencies
+- Ensure you have node.js installed
+   - If you don't you can get it from [here](https://nodejs.org/en/)
 - Ensure you have yarn and typescript installed globally
    - If you don't, you can install them by running `npm i -g yarn` and `npm i -g typescript` respectively
 - Install project dependencies by running `yarn install` in the root of the project
