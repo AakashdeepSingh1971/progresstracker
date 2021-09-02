@@ -113,7 +113,7 @@ function Tasks(props: { todo: Todo }) {
                                         } w-12  h-8 float-right text-black`}
                                 />
                             </Disclosure.Button>
-                            <button onClick={completeAll} className="rounded-full w-12 h-12 ml-5 border-10 border-black hover:bg-red-300 bg-green-400 filter" >  </button>
+                            <button onClick={completeAll} className={`rounded-full w-12 h-12 ml-5 float-right border-10 border-black ${prog==100 ? 'bg-green-400' : 'bg-red-300'}    filter`} >   </button>
 
                         </div>
                         <Disclosure.Panel className="px-4  py-2 text-sm  w-5/6 text-gray-500">
