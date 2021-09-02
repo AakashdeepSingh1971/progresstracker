@@ -191,7 +191,7 @@ const Results: FC<ResultsProps> = ({
         wrapper.query.user.getTodos(username).then((resp) => {
             console.log(resp)
             if (!resp.success) { setTodos([]); console.error(resp.error); }
-            if (resp.success) setTodos(resp.data);
+            if (resp.success) { setTodos([]); setTodos(resp.data); }
         })
     }, [selectedtUsername])
     return (

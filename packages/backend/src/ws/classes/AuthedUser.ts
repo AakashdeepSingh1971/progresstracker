@@ -28,6 +28,34 @@ export class AuthedUser {
     get role(): UserRole { return this._role }
     get username(): string { return this._username }
 
+    subscribeTodos() {
+        const db = database.getDatabase();
+        const ref = db.ref(`todos/${this._username}`)
+
+        ref.on('child_added', (data) => {
+            this._wsClient.ws.send(JSON.stringify({
+                op: 'todo:added',
+                data: data.toJSON()
+            }));
+        })
+
+        ref.on('child_changed', (data) => {
+            this._wsClient.ws.send(JSON.stringify({
+                op: 'todo:updated',
+                data: data.toJSON()
+            }));
+        })
+
+        ref.on('child_removed', (data) => {
+            this._wsClient.ws.send(JSON.stringify({
+                op: 'todo:deleted',
+                data: data.toJSON()
+            }));
+        })
+
+        return true;
+    }
+
 
     data() {
         return {

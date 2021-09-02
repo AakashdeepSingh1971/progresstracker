@@ -51,7 +51,6 @@ export class WebsocketServer {
                 const payload: MessagePayload = JSON.parse(data as string);
                 if (!this.operators.has(payload.op)) return ws.send(JSON.stringify({ code: 1007, error: 'Invalid OP' }))
 
-                console.log(payload)
                 const operator = this.operators.get(payload.op)
                 operator?.execute(this, { id, ws }, payload);
             } catch (e) {
