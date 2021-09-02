@@ -85,7 +85,7 @@ function Tasks(props: { todo: Todo }) {
                 {({ open }) => (
                     <>
                         <div className="flex ">
-                            <Disclosure.Button className="flex justify-between w-5/6 px-4 text-xl py-2  font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
+                            <Disclosure.Button className="flex justify-between w-5/6 ml-3 px-4 text-xl py-2  font-medium text-left text-black bg-indigo-200 rounded-lg hover:bg-indigo-300 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-100">
 
                                 <div className=" w-11/12 text-left  float-left">
                                     {props.todo.name}
@@ -124,13 +124,11 @@ function Tasks(props: { todo: Todo }) {
     )
 
 
-    // {/* <UserTask todo="todo" username={"selectedtUsername"} key={todo.id} />)} */}
 }
 
 
 
 function SubTask(props: {
-    // task: TodoTask
     todoId: string,
     task: TodoTask
 }) {
