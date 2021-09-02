@@ -29,8 +29,10 @@
 ### Starting frontend *(For development)*
 - `cd packages/website`
 - Start the next.js dev server `yarn dev`
+- The server would have now started on `localhost:8443` *(you can change the port by setting `WS_PORT` in `.env`)*
 
 ### Starting frontend *(For production)*
 - `cd packages/website`
 - SSR all pages using next.js `yarn build`
 - Start next.js prod server `yarn start`
+- The server would have now started on `localhost:3000` *(you can change the port by starting the server manually with the command `next start -p PORT`)*
