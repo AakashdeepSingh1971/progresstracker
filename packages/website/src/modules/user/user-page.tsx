@@ -19,7 +19,6 @@ export default function UserPage(props: { task: string, job: string }) {
             setTodos((t) => t ? t.concat(todo.data) : [])
         })
         wrapper.subscribe.todo.update((todo) => {
-            console.log(todo);
             todo.data.tasks = Object.values(todo.data.tasks)
             setTodos((t) => t.filter((to) => to.id !== todo.data.id));
             setTodos((t) => t ? t.concat(todo.data) : [])

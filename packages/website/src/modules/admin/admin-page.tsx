@@ -189,7 +189,6 @@ const Results: FC<ResultsProps> = ({
     const wrapper = useWrappedConn();
     useEffect(() => {
         wrapper.query.user.getTodos(username).then((resp) => {
-            console.log(resp)
             if (!resp.success) { setTodos([]); console.error(resp.error); }
             if (resp.success) { setTodos([]); setTodos(resp.data); }
         })

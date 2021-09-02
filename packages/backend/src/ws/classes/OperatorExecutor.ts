@@ -34,7 +34,6 @@ export default class OperatorExecutor {
             ref: payload.ref
         });
         client.ws.send(d);
-        console.log(d);
     }
 
     public setExecutor(executor: Executor): OperatorExecutor {

@@ -34,7 +34,7 @@ export default function SignUp() {
 
     wrapper.mutation.user.create(username, password).then((resp) => {
       if (resp.success) useAuthStore.getState().setAuth({ token: resp.token, username })
-      if (!resp.success) console.log(resp.error);
+      if (!resp.success) console.error(resp.error);
     })
   }
 
