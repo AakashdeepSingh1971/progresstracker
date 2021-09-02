@@ -30,6 +30,13 @@ export const wrap = (connection: Connection) => ({
                 })
             }),
         },
+        todo: {
+            subscribe: (): Promise<GenericSuccessResponse | ErrorResponse> => new Promise((resolve, reject) => {
+                connection.fetch('todo:subscribe', {}).then((f) => {
+                    resolve((f as GenericSuccessResponse | ErrorResponse))
+                })
+            }),
+        },
         admin: {
             getUsers: (): Promise<GetUsersResponse | ErrorResponse> => new Promise((resolve, reject) => {
                 connection.fetch('admin:get_users', {}).then((f) => {
