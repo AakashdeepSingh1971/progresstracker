@@ -8,6 +8,7 @@ const WS_PORT = Number(process.env.WS_PORT || 8443);
 async function main() {
 
     const wss = new WebsocketServer(WS_PORT);
+    console.log(`WSS started on localhost:${WS_PORT}`)
 
 }
 
