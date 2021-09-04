@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
-import { useWrappedConn } from "../hooks/useConn";
+import { useConnContext, useWrappedConn } from "../hooks/useConn";
 import {
   DetailedHTMLProps,
   InputHTMLAttributes,
@@ -18,6 +18,7 @@ export default function LogIn() {
   const [password, setPasword] = useState("")
   const router = useRouter()
   const wrapper = useWrappedConn();
+  const connContext = useConnContext();
 
 
 
@@ -37,6 +38,7 @@ export default function LogIn() {
       if (!resp.success) console.error(resp.error);
       if (resp.success) {
         useAuthStore.getState().setAuth({ username, token: resp.newToken });
+        connContext.setAuthed(true);
         if (resp.user.role == UserRole.USER) router.push("/user")
         if (resp.user.role == UserRole.ADMINISTRATOR) router.push("/admin")
       }

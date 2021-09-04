@@ -6,13 +6,13 @@ export const WaitForAuth: FC = ({ children }) => {
 
     if (!connContext.conn) return (
         <div>
-            <p>Loading</p>
+            <p>Loading 1</p>
         </div>
     )
 
     if (!connContext.authed) return (
         <div>
-            <p>Loading</p>
+            <p>Loading 2</p>
         </div>
     );
 
