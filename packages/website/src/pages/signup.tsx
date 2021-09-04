@@ -1,6 +1,5 @@
 import { Transition, Dialog } from "@headlessui/react";
 import React, {
-  FC,
   DetailedHTMLProps,
   InputHTMLAttributes,
   Fragment,

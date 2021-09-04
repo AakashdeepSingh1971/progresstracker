@@ -15,6 +15,7 @@ import { Todo } from '@progresstracker/wrapper';
 export default function Update(props: { todo: Todo, username: string }) {
   const [isOpen, setIsOpen] = useState(false)
   const [taskName, setTaskName] = useState("");
+  // @ts-ignore
   const [todo, setTodo] = useState<Todo>(props.todo);
   const [selectedTask, setSelectedTask] = useState("");
 
