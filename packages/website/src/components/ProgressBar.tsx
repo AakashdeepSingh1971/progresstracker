@@ -18,11 +18,12 @@ const ProgressBar: FC<ProgressBarOpts> = ({ progress = 0, type, className = "" }
 
   useEffect(() => {
     setInterval(() => {
-      setProg((p) =>
-        p < progress ? p + 0.75 : p
+      setProg((current) =>
+        current < progress ? current + 0.75 : current
       );
     }, 10, 5000);
-  }, [progress])
+  }, [progress]);
+
 
   return (
     <div ref={barRef} className={`${type == 'user' ? barTypes.user : barTypes.admin} ${className}`}>
